@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	const char* volumeFileName = "[model].raw";
+	const char* volumeFileName = "model.raw";
 	const char* outputVolumeFileName = "modifiedTri.vtk";
 	const char* OctreeFileName = "octree.vtk";
 	const char* DualFullHexFileName = "dualFullHex.vtk";
