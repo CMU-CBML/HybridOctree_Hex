@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "C:/Users/14124/Documents/GitHub/HybridOctree_Hex/HybridOctree_Hex_v1.0")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "C:/Users/14124/Documents/GitHub/HybridOctree_Hex/HybridOctree_Hex_v1.0/build")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "C:/Users/14124/Documents/GitHub/HybridOctree_Hex/HybridOctree_Hex_v1.0")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

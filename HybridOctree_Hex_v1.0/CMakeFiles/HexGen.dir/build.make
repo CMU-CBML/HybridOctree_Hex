@@ -55,7 +55,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build
+CMAKE_BINARY_DIR = C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0
 
 # Include any dependencies generated for this target.
 include CMakeFiles/HexGen.dir/depend.make
@@ -69,9 +69,9 @@ include CMakeFiles/HexGen.dir/progress.make
 include CMakeFiles/HexGen.dir/flags.make
 
 CMakeFiles/HexGen.dir/Main.cpp.obj: CMakeFiles/HexGen.dir/flags.make
-CMakeFiles/HexGen.dir/Main.cpp.obj: C:/Users/14124/Documents/GitHub/HybridOctree_Hex/HybridOctree_Hex_v1.0/Main.cpp
+CMakeFiles/HexGen.dir/Main.cpp.obj: Main.cpp
 CMakeFiles/HexGen.dir/Main.cpp.obj: CMakeFiles/HexGen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/HexGen.dir/Main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/HexGen.dir/Main.cpp.obj"
 	D:\GCC\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HexGen.dir/Main.cpp.obj -MF CMakeFiles\HexGen.dir\Main.cpp.obj.d -o CMakeFiles\HexGen.dir\Main.cpp.obj -c C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\Main.cpp
 
 CMakeFiles/HexGen.dir/Main.cpp.i: cmake_force
@@ -83,9 +83,9 @@ CMakeFiles/HexGen.dir/Main.cpp.s: cmake_force
 	D:\GCC\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\Main.cpp -o CMakeFiles\HexGen.dir\Main.cpp.s
 
 CMakeFiles/HexGen.dir/HexGen.cpp.obj: CMakeFiles/HexGen.dir/flags.make
-CMakeFiles/HexGen.dir/HexGen.cpp.obj: C:/Users/14124/Documents/GitHub/HybridOctree_Hex/HybridOctree_Hex_v1.0/HexGen.cpp
+CMakeFiles/HexGen.dir/HexGen.cpp.obj: HexGen.cpp
 CMakeFiles/HexGen.dir/HexGen.cpp.obj: CMakeFiles/HexGen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HexGen.dir/HexGen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HexGen.dir/HexGen.cpp.obj"
 	D:\GCC\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HexGen.dir/HexGen.cpp.obj -MF CMakeFiles\HexGen.dir\HexGen.cpp.obj.d -o CMakeFiles\HexGen.dir\HexGen.cpp.obj -c C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\HexGen.cpp
 
 CMakeFiles/HexGen.dir/HexGen.cpp.i: cmake_force
@@ -97,9 +97,9 @@ CMakeFiles/HexGen.dir/HexGen.cpp.s: cmake_force
 	D:\GCC\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\HexGen.cpp -o CMakeFiles\HexGen.dir\HexGen.cpp.s
 
 CMakeFiles/HexGen.dir/Mesh.cpp.obj: CMakeFiles/HexGen.dir/flags.make
-CMakeFiles/HexGen.dir/Mesh.cpp.obj: C:/Users/14124/Documents/GitHub/HybridOctree_Hex/HybridOctree_Hex_v1.0/Mesh.cpp
+CMakeFiles/HexGen.dir/Mesh.cpp.obj: Mesh.cpp
 CMakeFiles/HexGen.dir/Mesh.cpp.obj: CMakeFiles/HexGen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/HexGen.dir/Mesh.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/HexGen.dir/Mesh.cpp.obj"
 	D:\GCC\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HexGen.dir/Mesh.cpp.obj -MF CMakeFiles\HexGen.dir\Mesh.cpp.obj.d -o CMakeFiles\HexGen.dir\Mesh.cpp.obj -c C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\Mesh.cpp
 
 CMakeFiles/HexGen.dir/Mesh.cpp.i: cmake_force
@@ -126,7 +126,7 @@ HexGen.exe: CMakeFiles/HexGen.dir/build.make
 HexGen.exe: CMakeFiles/HexGen.dir/linkLibs.rsp
 HexGen.exe: CMakeFiles/HexGen.dir/objects1.rsp
 HexGen.exe: CMakeFiles/HexGen.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable HexGen.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable HexGen.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\HexGen.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -138,6 +138,6 @@ CMakeFiles/HexGen.dir/clean:
 .PHONY : CMakeFiles/HexGen.dir/clean
 
 CMakeFiles/HexGen.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0 C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0 C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\build\CMakeFiles\HexGen.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0 C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0 C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0 C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0 C:\Users\14124\Documents\GitHub\HybridOctree_Hex\HybridOctree_Hex_v1.0\CMakeFiles\HexGen.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/HexGen.dir/depend
 
