@@ -4493,7 +4493,7 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 			}
 			std::cout << "Try:"<< k <<" " << smallDist << " " << triNum[l] << std::endl;
 			if (k == 0 && smallDist < DIST_THRES2) {
-				if (ELEM_THRES == 0.01) ELEM_THRES = 0.5;
+				if (ELEM_THRES == 0.01) ELEM_THRES = 0.53;
 				else ELEM_THRES += 0.01;
 				octreeMesh.WriteToVtk("finalMesh.vtk", BOX_LENGTH_RATIO, START_POINT);
 				smallDist = 114514;
