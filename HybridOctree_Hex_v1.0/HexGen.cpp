@@ -4495,6 +4495,91 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 			if (k == 0 && smallDist < DIST_THRES2) {
 				if (ELEM_THRES == 0.01) ELEM_THRES = 0.53;
 				else ELEM_THRES += 0.01;
+
+				for (j = 0; j < sPIdx; j++) {
+					tmp[0] = 0; tmp[1] = 0; tmp[2] = 0;
+					for (k = 0; k < cP2[j].size(); k++) {
+						tmp[0] += octreeMesh.v[cP2[j][k]][0];
+						tmp[1] += octreeMesh.v[cP2[j][k]][1];
+						tmp[2] += octreeMesh.v[cP2[j][k]][2];
+					}
+					tmp[0] /= cP2[j].size(); tmp[1] /= cP2[j].size(); tmp[2] /= cP2[j].size();
+					prop = rand() / (RAND_MAX * 1.0f);
+					target[0] = prop * tmp[0] + (1 - prop) * octreeMesh.v[bP[j]][0];
+					target[1] = prop * tmp[1] + (1 - prop) * octreeMesh.v[bP[j]][1];
+					target[2] = prop * tmp[2] + (1 - prop) * octreeMesh.v[bP[j]][2];
+
+					pair = true;
+					for (k = 0; k < cE2[j].size(); k++) {
+						for (l = 0; l < 8; l++) {
+							if (bP[j] == octreeMesh.e[cE2[j][k]][l]) {
+								testP[l][0] = target[0]; testP[l][1] = target[1]; testP[l][2] = target[2];
+							}
+							else {
+								testP[l][0] = octreeMesh.v[octreeMesh.e[cE2[j][k]][l]][0];
+								testP[l][1] = octreeMesh.v[octreeMesh.e[cE2[j][k]][l]][1];
+								testP[l][2] = octreeMesh.v[octreeMesh.e[cE2[j][k]][l]][2];
+							}
+						}
+						if (Sj(testP[0], testP[1], testP[2], testP[3], testP[4], testP[5], testP[6], testP[7]) <= ELEM_THRES) {
+							pair = false;
+							break;
+						}
+					}
+					if (pair) {
+						octreeMesh.v[bP[j]][0] = target[0];
+						octreeMesh.v[bP[j]][1] = target[1];
+						octreeMesh.v[bP[j]][2] = target[2];
+					}
+				}
+
+				for (j = 0; j < sPIdx; j++) {
+					tmp[0] = 0; tmp[1] = 0; tmp[2] = 0;
+					for (k = 0; k < cP[j].size(); k++) {
+						tmp[0] += octreeMesh.v[cP[j][k]][0];
+						tmp[1] += octreeMesh.v[cP[j][k]][1];
+						tmp[2] += octreeMesh.v[cP[j][k]][2];
+					}
+					tmp[0] /= cP[j].size(); tmp[1] /= cP[j].size(); tmp[2] /= cP[j].size();
+					prop = rand() / (RAND_MAX * 1.0f);
+					tmp[0] = prop * tmp[0] + (1 - prop) * octreeMesh.v[bP[j + sPIdx]][0];
+					tmp[1] = prop * tmp[1] + (1 - prop) * octreeMesh.v[bP[j + sPIdx]][1];
+					tmp[2] = prop * tmp[2] + (1 - prop) * octreeMesh.v[bP[j + sPIdx]][2];
+
+					minDist = MAX_NUM2;
+					for (k = 0; k < triMesh.eNum; k++) {
+						dis = PointToTri(triMesh.v[triMesh.e[k][0]], triMesh.v[triMesh.e[k][1]], triMesh.v[triMesh.e[k][2]],
+							tmp, tmp2, minDist);
+						if (dis < minDist) {
+							minDist = dis;
+							target[0] = tmp2[0]; target[1] = tmp2[1]; target[2] = tmp2[2];
+						}
+					}
+
+					pair = true;
+					for (k = 0; k < cE[j].size(); k++) {
+						for (l = 0; l < 8; l++) {
+							if (bP[j + sPIdx] == octreeMesh.e[cE[j][k]][l]) {
+								testP[l][0] = target[0]; testP[l][1] = target[1]; testP[l][2] = target[2];
+							}
+							else {
+								testP[l][0] = octreeMesh.v[octreeMesh.e[cE[j][k]][l]][0];
+								testP[l][1] = octreeMesh.v[octreeMesh.e[cE[j][k]][l]][1];
+								testP[l][2] = octreeMesh.v[octreeMesh.e[cE[j][k]][l]][2];
+							}
+						}
+						if (Sj(testP[0], testP[1], testP[2], testP[3], testP[4], testP[5], testP[6], testP[7]) <= ELEM_THRES) {
+							pair = false;
+							break;
+						}
+					}
+					if (pair) {
+						octreeMesh.v[bP[j + sPIdx]][0] = target[0];
+						octreeMesh.v[bP[j + sPIdx]][1] = target[1];
+						octreeMesh.v[bP[j + sPIdx]][2] = target[2];
+					}
+				}
+
 				octreeMesh.WriteToVtk("finalMesh.vtk", BOX_LENGTH_RATIO, START_POINT);
 				smallDist = 114514;
 			}
