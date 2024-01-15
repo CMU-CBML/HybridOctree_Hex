@@ -802,13 +802,13 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 	box[0][0] = MAX_NUM2; box[0][1] = -MAX_NUM2;
 	box[1][0] = MAX_NUM2; box[1][1] = -MAX_NUM2;
 	box[2][0] = MAX_NUM2; box[2][1] = -MAX_NUM2;
-	if (fgets(line, sizeof(line), dataFile) && sscanf_s(line, "%d %d", &points, &elements) == 2) {
+	if (fgets(line, sizeof(line), dataFile) && sscanf(line, "%d %d", &points, &elements) == 2) {
 		triMesh.Initialize(elements, points, 3);
 		for (i = 0; i < points; i++) triMesh.r[i] = 0;
 		triMesh.eNum = elements; triMesh.vNum = points;
 		for (i = 0; i < points; i++) {
 			fgets(line, sizeof(line), dataFile);
-			sscanf_s(line, "%lf %lf %lf", &triMesh.v[i][0], &triMesh.v[i][1], &triMesh.v[i][2]);
+			sscanf(line, "%lf %lf %lf", &triMesh.v[i][0], &triMesh.v[i][1], &triMesh.v[i][2]);
 			for (j = 0; j < 3; j++) {
 				box[j][0] = (box[j][0] > triMesh.v[i][j]) ? triMesh.v[i][j] : box[j][0];
 				box[j][1] = (box[j][1] < triMesh.v[i][j]) ? triMesh.v[i][j] : box[j][1];
@@ -837,7 +837,7 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 		}
 		for (i = 0; i < elements; i++) {
 			fgets(line, sizeof(line), dataFile);
-			sscanf_s(line, "%d %d %d", &triMesh.e[i][0], &triMesh.e[i][1], &triMesh.e[i][2]);
+			sscanf(line, "%d %d %d", &triMesh.e[i][0], &triMesh.e[i][1], &triMesh.e[i][2]);
 		}
 		START_POINT[0] = 0;
 		START_POINT[1] = 0;
@@ -1544,22 +1544,22 @@ void hexGen::ReadOctree(const char* inputFileName) {
 	}
 
 	int points;
-	if (fgets(line, sizeof(line), dataFile) && sscanf_s(line, "POINTS %d double", &points) == 1) {
+	if (fgets(line, sizeof(line), dataFile) && sscanf(line, "POINTS %d double", &points) == 1) {
 		octreeMesh.Initialize(points);
 		octreeENum = points;
 		octreeMesh.vNum = points;
 		for (i = 0; i < points; i++) {
 			fgets(line, sizeof(line), dataFile);
-			sscanf_s(line, "%lf %lf %lf", &octreeMesh.v[i][0], &octreeMesh.v[i][1], &octreeMesh.v[i][2]);
+			sscanf(line, "%lf %lf %lf", &octreeMesh.v[i][0], &octreeMesh.v[i][1], &octreeMesh.v[i][2]);
 			octreeMesh.v[i][0] = round((octreeMesh.v[i][0] - START_POINT[0]) / BOX_LENGTH_RATIO);
 			octreeMesh.v[i][1] = round((octreeMesh.v[i][1] - START_POINT[1]) / BOX_LENGTH_RATIO);
 			octreeMesh.v[i][2] = round((octreeMesh.v[i][2] - START_POINT[2]) / BOX_LENGTH_RATIO);
 		}
-		if (fgets(line, sizeof(line), dataFile) && sscanf_s(line, "CELLS %d %d", &leafNum, &i) == 2) {
+		if (fgets(line, sizeof(line), dataFile) && sscanf(line, "CELLS %d %d", &leafNum, &i) == 2) {
 			octreeMesh.eNum = leafNum;
 			for (i = 0; i < leafNum; i++) {
 				fgets(line, sizeof(line), dataFile);
-				sscanf_s(line, "%d %d %d %d %d %d %d %d %d", &j, &octreeMesh.e[i][0], &octreeMesh.e[i][1], &octreeMesh.e[i][2], &octreeMesh.e[i][3], &octreeMesh.e[i][4], &octreeMesh.e[i][5], &octreeMesh.e[i][6], &octreeMesh.e[i][7]);
+				sscanf(line, "%d %d %d %d %d %d %d %d %d", &j, &octreeMesh.e[i][0], &octreeMesh.e[i][1], &octreeMesh.e[i][2], &octreeMesh.e[i][3], &octreeMesh.e[i][4], &octreeMesh.e[i][5], &octreeMesh.e[i][6], &octreeMesh.e[i][7]);
 			}
 		}
 		else
@@ -2559,19 +2559,19 @@ void hexGen::ReadDualFullHex(const char* inputFileName) {
 	}
 
 	int points, elements;
-	if (fgets(line, sizeof(line), dataFile) && sscanf_s(line, "POINTS %d double", &points) == 1) {
+	if (fgets(line, sizeof(line), dataFile) && sscanf(line, "POINTS %d double", &points) == 1) {
 		hexMesh.Initialize(points);
 		hexMeshENum = points;
 		hexMesh.vNum = points;
 		for (i = 0; i < points; i++) {
 			fgets(line, sizeof(line), dataFile);
-			sscanf_s(line, "%lf %lf %lf", &hexMesh.v[i][0], &hexMesh.v[i][1], &hexMesh.v[i][2]);
+			sscanf(line, "%lf %lf %lf", &hexMesh.v[i][0], &hexMesh.v[i][1], &hexMesh.v[i][2]);
 		}
-		if (fgets(line, sizeof(line), dataFile) && sscanf_s(line, "CELLS %d %d", &elements, &i) == 2) {
+		if (fgets(line, sizeof(line), dataFile) && sscanf(line, "CELLS %d %d", &elements, &i) == 2) {
 			hexMesh.eNum = elements;
 			for (i = 0; i < elements; i++) {
 				fgets(line, sizeof(line), dataFile);
-				sscanf_s(line, "%d %d %d %d %d %d %d %d %d", &j, &hexMesh.e[i][0], &hexMesh.e[i][1], &hexMesh.e[i][2], &hexMesh.e[i][3], &hexMesh.e[i][4], &hexMesh.e[i][5], &hexMesh.e[i][6], &hexMesh.e[i][7]);
+				sscanf(line, "%d %d %d %d %d %d %d %d %d", &j, &hexMesh.e[i][0], &hexMesh.e[i][1], &hexMesh.e[i][2], &hexMesh.e[i][3], &hexMesh.e[i][4], &hexMesh.e[i][5], &hexMesh.e[i][6], &hexMesh.e[i][7]);
 			}
 		}
 		else
@@ -2898,7 +2898,7 @@ void hexGen::ReadDualHex(const char* inputFileName) {
 	}
 
 	int points;
-	if (fgets(line, sizeof(line), dataFile) && sscanf_s(line, "POINTS %d double", &points) == 1) {
+	if (fgets(line, sizeof(line), dataFile) && sscanf(line, "POINTS %d double", &points) == 1) {
 		delete[] octreeMesh.v;
 		octreeMesh.v = nullptr;
 		for (i = 0; i < octreeENum; i++) {
@@ -2911,13 +2911,13 @@ void hexGen::ReadDualHex(const char* inputFileName) {
 		octreeMesh.vNum = points;
 		for (i = 0; i < points; i++) {
 			fgets(line, sizeof(line), dataFile);
-			sscanf_s(line, "%lf %lf %lf", &octreeMesh.v[i][0], &octreeMesh.v[i][1], &octreeMesh.v[i][2]);
+			sscanf(line, "%lf %lf %lf", &octreeMesh.v[i][0], &octreeMesh.v[i][1], &octreeMesh.v[i][2]);
 		}
-		if (fgets(line, sizeof(line), dataFile) && sscanf_s(line, "CELLS %d %d", &leafNum, &i) == 2) {
+		if (fgets(line, sizeof(line), dataFile) && sscanf(line, "CELLS %d %d", &leafNum, &i) == 2) {
 			octreeMesh.eNum = leafNum;
 			for (i = 0; i < leafNum; i++) {
 				fgets(line, sizeof(line), dataFile);
-				sscanf_s(line, "%d %d %d %d %d %d %d %d %d", &j, &octreeMesh.e[i][0], &octreeMesh.e[i][1], &octreeMesh.e[i][2], &octreeMesh.e[i][3], &octreeMesh.e[i][4], &octreeMesh.e[i][5], &octreeMesh.e[i][6], &octreeMesh.e[i][7]);
+				sscanf(line, "%d %d %d %d %d %d %d %d %d", &j, &octreeMesh.e[i][0], &octreeMesh.e[i][1], &octreeMesh.e[i][2], &octreeMesh.e[i][3], &octreeMesh.e[i][4], &octreeMesh.e[i][5], &octreeMesh.e[i][6], &octreeMesh.e[i][7]);
 			}
 		}
 		else
