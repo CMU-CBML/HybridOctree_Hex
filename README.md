@@ -17,7 +17,9 @@ Paper: https://arxiv.org/abs/2401.05984
 |bumpy_sphere|25466|21646|0.58|
 |bumpy_torus|249852|219832|0.56|
 |bunny|26375|21695|0.57|
+|buste|71068|61441|0.56|
 |camel|124573|105417|0.57|
+|camille_hand|114453|100023|0.59|
 |david|319465|282957|0.56|
 |deformed_armadillo|43216|34939|0.56|
 |dragonstand2|62576|50853|0.56|
