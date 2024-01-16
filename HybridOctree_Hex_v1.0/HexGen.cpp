@@ -875,8 +875,8 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 									lPublic[1] = -triMesh.v[i][1] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][1];
 									lPublic[2] = -triMesh.v[i][2] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][2];
 									CROSS(cross1, l1, lPublic)
-										CROSS(cross2, l2, lPublic)
-										angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
+									CROSS(cross2, l2, lPublic)
+									angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
 									angle = (angle >= -1) ? angle : -1;
 									angle = (angle <= 1) ? acos(angle) : 0;
 									triMesh.r[i] += (angle - PI) * (angle - PI);
