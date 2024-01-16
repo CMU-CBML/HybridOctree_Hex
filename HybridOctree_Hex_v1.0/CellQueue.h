@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <memory>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string>
 #include <sys/types.h>
 #include "Initialization.h"
