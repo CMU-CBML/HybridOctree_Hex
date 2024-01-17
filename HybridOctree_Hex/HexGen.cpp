@@ -844,46 +844,42 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 		START_POINT[2] = 0;
 		int publicIdx[2];
 		double l1[3], lPublic[3], l2[3], cross1[3], cross2[3], angle;
-		for (i = 0; i < triMesh.vNum; i++) {
-			triMesh.r[i] = 0;
-			for (j = 0; j < triMesh.eNum - 1; j++)
-				for (k = 0; k < 3; k++)
-					if (triMesh.e[j][k] == i)
-						for (l = j + 1; l < triMesh.eNum; l++)
-							for (m = 0; m < 3; m++)
-								if (triMesh.e[l][m] == i) {
-									if (triMesh.e[j][(k + 1) % 3] == triMesh.e[l][(m + 1) % 3]) {
-										publicIdx[0] = 1; publicIdx[1] = 1;
-									}
-									else if (triMesh.e[j][(k + 1) % 3] == triMesh.e[l][(m + 2) % 3]) {
-										publicIdx[0] = 1; publicIdx[1] = 2;
-									}
-									else if (triMesh.e[j][(k + 2) % 3] == triMesh.e[l][(m + 1) % 3]) {
-										publicIdx[0] = 2; publicIdx[1] = 1;
-									}
-									else if (triMesh.e[j][(k + 2) % 3] == triMesh.e[l][(m + 2) % 3]) {
-										publicIdx[0] = 2; publicIdx[1] = 2;
-									}
-									else continue;
-									l1[0] = -triMesh.v[i][0] + triMesh.v[triMesh.e[j][(k + 3 - publicIdx[0]) % 3]][0];
-									l1[1] = -triMesh.v[i][1] + triMesh.v[triMesh.e[j][(k + 3 - publicIdx[0]) % 3]][1];
-									l1[2] = -triMesh.v[i][2] + triMesh.v[triMesh.e[j][(k + 3 - publicIdx[0]) % 3]][2];
-									l2[0] = -triMesh.v[i][0] + triMesh.v[triMesh.e[l][(m + 3 - publicIdx[1]) % 3]][0];
-									l2[1] = -triMesh.v[i][1] + triMesh.v[triMesh.e[l][(m + 3 - publicIdx[1]) % 3]][1];
-									l2[2] = -triMesh.v[i][2] + triMesh.v[triMesh.e[l][(m + 3 - publicIdx[1]) % 3]][2];
-									lPublic[0] = -triMesh.v[i][0] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][0];
-									lPublic[1] = -triMesh.v[i][1] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][1];
-									lPublic[2] = -triMesh.v[i][2] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][2];
-									CROSS(cross1, l1, lPublic)
-									CROSS(cross2, l2, lPublic)
-									angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
-									angle = (angle >= -1) ? angle : -1;
-									angle = (angle <= 1) ? acos(angle) : 0;
-									triMesh.r[i] += (angle - PI) * (angle - PI);
-									break;
-								}
-		}
-
+		for (i = 0; i < triMesh.vNum; i++) triMesh.r[i] = 0;
+		for (j = 0; j < triMesh.eNum - 1; j++)
+			for (k = 0; k < 3; k++)
+				for (l = j + 1; l < triMesh.eNum; l++)
+					for (m = 0; m < 3; m++)
+						if (triMesh.e[l][m] == triMesh.e[j][k]) {
+							if (triMesh.e[j][(k + 1) % 3] == triMesh.e[l][(m + 1) % 3]) {
+								publicIdx[0] = 1; publicIdx[1] = 1;
+							}
+							else if (triMesh.e[j][(k + 1) % 3] == triMesh.e[l][(m + 2) % 3]) {
+								publicIdx[0] = 1; publicIdx[1] = 2;
+							}
+							else if (triMesh.e[j][(k + 2) % 3] == triMesh.e[l][(m + 1) % 3]) {
+								publicIdx[0] = 2; publicIdx[1] = 1;
+							}
+							else if (triMesh.e[j][(k + 2) % 3] == triMesh.e[l][(m + 2) % 3]) {
+								publicIdx[0] = 2; publicIdx[1] = 2;
+							}
+							else continue;
+							l1[0] = -triMesh.v[triMesh.e[j][k]][0] + triMesh.v[triMesh.e[j][(k + 3 - publicIdx[0]) % 3]][0];
+							l1[1] = -triMesh.v[triMesh.e[j][k]][1] + triMesh.v[triMesh.e[j][(k + 3 - publicIdx[0]) % 3]][1];
+							l1[2] = -triMesh.v[triMesh.e[j][k]][2] + triMesh.v[triMesh.e[j][(k + 3 - publicIdx[0]) % 3]][2];
+							l2[0] = -triMesh.v[triMesh.e[j][k]][0] + triMesh.v[triMesh.e[l][(m + 3 - publicIdx[1]) % 3]][0];
+							l2[1] = -triMesh.v[triMesh.e[j][k]][1] + triMesh.v[triMesh.e[l][(m + 3 - publicIdx[1]) % 3]][1];
+							l2[2] = -triMesh.v[triMesh.e[j][k]][2] + triMesh.v[triMesh.e[l][(m + 3 - publicIdx[1]) % 3]][2];
+							lPublic[0] = -triMesh.v[triMesh.e[j][k]][0] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][0];
+							lPublic[1] = -triMesh.v[triMesh.e[j][k]][1] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][1];
+							lPublic[2] = -triMesh.v[triMesh.e[j][k]][2] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][2];
+							CROSS(cross1, l1, lPublic)
+							CROSS(cross2, l2, lPublic)
+							angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
+							angle = (angle >= -1) ? angle : -1;
+							angle = (angle <= 1) ? acos(angle) : 0;
+							triMesh.r[triMesh.e[j][k]] += (angle - PI) * (angle - PI);
+							break;
+						}
 		triMesh.WriteToVtk(outputFileName, 1, START_POINT, 5, true);
 
 		BOX_LENGTH = 100;
