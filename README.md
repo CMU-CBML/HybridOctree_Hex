@@ -23,6 +23,7 @@ Paper: https://arxiv.org/abs/2401.05984
 |carter|190871|160122|0.55|
 |chair|232460|192814|0.57|
 |chair1|50650|41034|0.58|
+|chinese_lion|351402|309525|0.55|
 |david|319465|282957|0.56|
 |deformed_armadillo|43216|34939|0.56|
 |dragonstand2|62576|50853|0.56|
