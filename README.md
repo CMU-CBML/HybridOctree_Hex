@@ -1,5 +1,5 @@
 # HybridOctree_Hex
-Please download the latest version of the software.
+Please download the latest release of the software.
 
 Paper: https://arxiv.org/abs/2401.05984
 
