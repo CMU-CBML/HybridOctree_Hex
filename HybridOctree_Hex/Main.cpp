@@ -13,7 +13,7 @@ int main()
 	const char* ProjHexFileName = "projHex.vtk";
 	
 	// 0/1/2/3/4
-	int progress = 3;
+	int progress = 0;
 	// 1/true: read existing file; 0/false: create new file
 	bool octreeExist = (progress > 0);// want this->progress = 0;
 	bool dualFullHexExist = (progress > 1);// want this->progress = 1;
