@@ -1,5 +1,7 @@
 # HybridOctree_Hex
+Please download the latest version of the software.
 Paper: https://arxiv.org/abs/2401.05984
+Mesh Statistics:
 |Model|#Vert|#Elem|Min SJ|
 | :--: | :--: | :--: | :--: |
 |airplane1|29899|24318|0.57|
