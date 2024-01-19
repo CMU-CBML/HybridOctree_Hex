@@ -536,7 +536,6 @@ inline double Sj(double p0[3], double p1[3], double p2[3], double p3[3], double 
 
 inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p4[3], double p5[3], double p6[3], double p7[3], int* minIdx) {
 	minIdx[0] = -1; minIdx[1] = -1; minIdx[2] = -1; minIdx[3] = -1; minIdx[4] = -1; minIdx[5] = -1; minIdx[6] = -1; minIdx[7] = -1; minIdx[8] = -1;
-	// q <= 0 0; 0 < q <= ELEM_THRES 1 else -1
 	double x0 = p1[0] + p2[0] + p5[0] + p6[0] - p0[0] - p3[0] - p4[0] - p7[0];
 	double y0 = p1[1] + p2[1] + p5[1] + p6[1] - p0[1] - p3[1] - p4[1] - p7[1];
 	double z0 = p1[2] + p2[2] + p5[2] + p6[2] - p0[2] - p3[2] - p4[2] - p7[2];
@@ -555,9 +554,8 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	double len1 = x1 * x1 + y1 * y1 + z1 * z1;
 	double len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	double len = std::sqrt(len0 * len1 * len2);
-	double Q = (ELEM_THRES == 0.01 ? 0.5 : ELEM_THRES);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[0] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[0] = 0;
 	else {
 		if (volume <= 0) minIdx[0] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[0] = 1;
@@ -583,7 +581,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[1] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[1] = 0;
 	else {
 		if (volume <= 0) minIdx[1] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[1] = 1;
@@ -609,7 +607,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[2] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[2] = 0;
 	else {
 		if (volume <= 0) minIdx[2] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[2] = 1;
@@ -635,7 +633,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[3] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[3] = 0;
 	else {
 		if (volume <= 0) minIdx[3] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[3] = 1;
@@ -661,7 +659,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[4] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[4] = 0;
 	else {
 		if (volume <= 0) minIdx[4] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[4] = 1;
@@ -687,7 +685,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[5] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[5] = 0;
 	else {
 		if (volume <= 0) minIdx[5] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[5] = 1;
@@ -713,7 +711,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[6] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[6] = 0;
 	else {
 		if (volume <= 0) minIdx[6] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[6] = 1;
@@ -739,7 +737,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[7] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[7] = 0;
 	else {
 		if (volume <= 0) minIdx[7] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[7] = 1;
@@ -765,7 +763,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= Q * len) minIdx[8] = 0;
+	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[8] = 0;
 	else {
 		if (volume <= 0) minIdx[8] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[8] = 1;
@@ -776,15 +774,20 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 hexGen::hexGen(int depth) {
 	octreeDepth = depth;
 	voxelSize = 1 << depth;// to the power of 2
-	numVoxels = voxelSize * voxelSize * voxelSize;// total number of voxels
 }
 
 hexGen::~hexGen(void) { }
 
 void hexGen::InitializeOctree(const char* inputFileName, const char* outputFileName) {
-	octreeArray.resize(levelId[octreeDepth + 1]);
+	octreeArray.resize(levelId[octreeDepth + 1], false);
 	cutArray.resize(MAX_NUM);
 	cutArray1.resize(MAX_NUM);
+	getLevel.resize(levelId[octreeDepth + 1]);
+	for (int i = 0; i < getLevel.size(); i++)
+		for (int j = octreeDepth; j > -1; j--)
+			if (levelId[j] <= i) {
+				getLevel[i] = j; break;
+			}
 
 	ReadRawData(inputFileName, outputFileName);
 }
@@ -914,6 +917,10 @@ inline void hexGen::GetCellValue() {
 							if (triMesh.r[triMesh.e[i][j]] > C_THRES[4]) {
 								refineTri4.push_back(i);
 								refineTriPt4.push_back(triMesh.e[i][j]);
+								if (triMesh.r[triMesh.e[i][j]] > C_THRES[5]) {
+									refineTri5.push_back(i);
+									refineTriPt5.push_back(triMesh.e[i][j]);
+								}
 							}
 						}
 					}
@@ -939,7 +946,7 @@ inline void hexGen::GetCellValue() {
 			tmp[0] = abs(dir[0]) > abs(dir[1]) ? abs(dir[0]) : abs(dir[1]);
 			tmp[0] = abs(dir[2]) > tmp[0] ? abs(dir[2]) : tmp[0];
 			len = tmp[0] * abs(len);
-			if (k == 1 && len > 0.125 * H_THRES[4])
+			if (k == 1)
 				if (len < H_THRES[0]) {
 					for (k = 0; k < 3; k++) {
 						refineTri0.push_back(i); refineTri0.push_back(j); refineTriPt0.push_back(triMesh.e[i][k]);
@@ -960,6 +967,11 @@ inline void hexGen::GetCellValue() {
 									for (k = 0; k < 3; k++) {
 										refineTri4.push_back(i); refineTri4.push_back(j); refineTriPt4.push_back(triMesh.e[i][k]);
 									}
+									if (len < H_THRES[5]) {
+										for (k = 0; k < 3; k++) {
+											refineTri5.push_back(i); refineTri5.push_back(j); refineTriPt5.push_back(triMesh.e[i][k]);
+										}
+									}
 								}
 							}
 						}
@@ -977,6 +989,8 @@ inline void hexGen::GetCellValue() {
 	refineTriPt3.assign(s3.begin(), s3.end());
 	std::unordered_set<int> s4(refineTriPt4.begin(), refineTriPt4.end());
 	refineTriPt4.assign(s4.begin(), s4.end());
+	std::unordered_set<int> s5(refineTriPt5.begin(), refineTriPt5.end());
+	refineTriPt5.assign(s5.begin(), s5.end());
 	std::unordered_set<int> s00(refineTri0.begin(), refineTri0.end());
 	refineTri0.assign(s00.begin(), s00.end());
 	std::unordered_set<int> s01(refineTri1.begin(), refineTri1.end());
@@ -987,22 +1001,30 @@ inline void hexGen::GetCellValue() {
 	refineTri3.assign(s03.begin(), s03.end());
 	std::unordered_set<int> s04(refineTri4.begin(), refineTri4.end());
 	refineTri4.assign(s04.begin(), s04.end());
-	std::cout << "Generate octree" << std::endl;
+	std::unordered_set<int> s05(refineTri5.begin(), refineTri5.end());
+	refineTri5.assign(s05.begin(), s05.end());
 	for (i = levelId[octreeDepth] - 1; i > -1; i--)
-		ComputeCellValue(i, GetLevel(i), octreeArray[i].intersect);
+		ComputeCellValue(i, getLevel[i]);
 }
 
-inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
-	int i;
-	if (level < octreeDepth - 1) {
+inline void hexGen::ComputeCellValue(int octreeId, int level) {
+	int i, j, k, l;
+	if (level < octreeDepth - 1)
 		for (i = 0; i < 8; i++)
-			if (octreeArray[Child(octreeId, level, i)].intersect) {
-				intersect = true; return;
+			if (octreeArray[Child(octreeId, level, i)]) {
+				octreeArray[octreeId] = true;
+				for (j = 0; j < 8; j++) {
+					k = Child(octreeId, level, j);
+					octreeArray[k] = true;
+					if (level == octreeDepth - 2 || !octreeArray[Child(k, level + 1, 0)])
+						for (l = 0; l < 8; l++) {
+							cutArray[leafNum] = Child(k, level + 1, l);
+							leafNum++;
+						}
+				}
+				return;
 			}
-		if (level < 3) return;
-	}
 
-	int j, k;
 	double box[8][3], center[3], tmp[3], dir[3], len, cellsize = BOX_LENGTH / (1 << level), radius = 0;
 	bool flag;
 
@@ -1033,7 +1055,33 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 	box[7][1] = START_POINT[1] + (j + 0.5 + CELL_DETECT) * cellsize;
 	box[7][2] = START_POINT[2] + (k + 0.5 + CELL_DETECT) * cellsize;
 
-	if (level == 8) {// 4
+	if (level == 9) {// 5
+		for (i = 0; i < refineTriPt5.size(); i++)
+			if (triMesh.v[refineTriPt5[i]][0] > box[0][0] &&
+				triMesh.v[refineTriPt5[i]][1] > box[0][1] &&
+				triMesh.v[refineTriPt5[i]][2] > box[0][2] &&
+				triMesh.v[refineTriPt5[i]][0] < box[6][0] &&
+				triMesh.v[refineTriPt5[i]][1] < box[6][1] &&
+				triMesh.v[refineTriPt5[i]][2] < box[6][2]) {
+				octreeArray[octreeId] = true; return;
+			}
+		for (i = 0; i < refineTri5.size(); i++)
+			if (Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[1], box[2]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[2], box[3]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[4], box[5], box[6]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[4], box[6], box[7]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[1], box[5]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[5], box[4]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[1], box[2], box[5]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[5], box[6]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[3], box[7]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[7], box[6]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[3], box[4]) ||
+				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[3], box[4], box[7])) {
+				octreeArray[octreeId] = true; return;
+			}
+	}
+	else if (level == 8) {// 4
 		for (i = 0; i < refineTriPt4.size(); i++)
 			if (triMesh.v[refineTriPt4[i]][0] > box[0][0] &&
 				triMesh.v[refineTriPt4[i]][1] > box[0][1] &&
@@ -1041,7 +1089,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				triMesh.v[refineTriPt4[i]][0] < box[6][0] &&
 				triMesh.v[refineTriPt4[i]][1] < box[6][1] &&
 				triMesh.v[refineTriPt4[i]][2] < box[6][2]) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 		for (i = 0; i < refineTri4.size(); i++)
 			if (Intersect(triMesh.v[triMesh.e[refineTri4[i]][0]], triMesh.v[triMesh.e[refineTri4[i]][1]], triMesh.v[triMesh.e[refineTri4[i]][2]], box[0], box[1], box[2]) ||
@@ -1056,7 +1104,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				Intersect(triMesh.v[triMesh.e[refineTri4[i]][0]], triMesh.v[triMesh.e[refineTri4[i]][1]], triMesh.v[triMesh.e[refineTri4[i]][2]], box[2], box[7], box[6]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri4[i]][0]], triMesh.v[triMesh.e[refineTri4[i]][1]], triMesh.v[triMesh.e[refineTri4[i]][2]], box[0], box[3], box[4]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri4[i]][0]], triMesh.v[triMesh.e[refineTri4[i]][1]], triMesh.v[triMesh.e[refineTri4[i]][2]], box[3], box[4], box[7])) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 	}
 	else if (level == 7) {// 3
@@ -1067,7 +1115,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				triMesh.v[refineTriPt3[i]][0] < box[6][0] &&
 				triMesh.v[refineTriPt3[i]][1] < box[6][1] &&
 				triMesh.v[refineTriPt3[i]][2] < box[6][2]) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 		for (i = 0; i < refineTri3.size(); i++)
 			if (Intersect(triMesh.v[triMesh.e[refineTri3[i]][0]], triMesh.v[triMesh.e[refineTri3[i]][1]], triMesh.v[triMesh.e[refineTri3[i]][2]], box[0], box[1], box[2]) ||
@@ -1082,7 +1130,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				Intersect(triMesh.v[triMesh.e[refineTri3[i]][0]], triMesh.v[triMesh.e[refineTri3[i]][1]], triMesh.v[triMesh.e[refineTri3[i]][2]], box[2], box[7], box[6]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri3[i]][0]], triMesh.v[triMesh.e[refineTri3[i]][1]], triMesh.v[triMesh.e[refineTri3[i]][2]], box[0], box[3], box[4]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri3[i]][0]], triMesh.v[triMesh.e[refineTri3[i]][1]], triMesh.v[triMesh.e[refineTri3[i]][2]], box[3], box[4], box[7])) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 	}
 	else if (level == 6) {// 2
@@ -1093,7 +1141,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				triMesh.v[refineTriPt2[i]][0] < box[6][0] &&
 				triMesh.v[refineTriPt2[i]][1] < box[6][1] &&
 				triMesh.v[refineTriPt2[i]][2] < box[6][2]) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 		for (i = 0; i < refineTri2.size(); i++)
 			if (Intersect(triMesh.v[triMesh.e[refineTri2[i]][0]], triMesh.v[triMesh.e[refineTri2[i]][1]], triMesh.v[triMesh.e[refineTri2[i]][2]], box[0], box[1], box[2]) ||
@@ -1108,7 +1156,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				Intersect(triMesh.v[triMesh.e[refineTri2[i]][0]], triMesh.v[triMesh.e[refineTri2[i]][1]], triMesh.v[triMesh.e[refineTri2[i]][2]], box[2], box[7], box[6]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri2[i]][0]], triMesh.v[triMesh.e[refineTri2[i]][1]], triMesh.v[triMesh.e[refineTri2[i]][2]], box[0], box[3], box[4]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri2[i]][0]], triMesh.v[triMesh.e[refineTri2[i]][1]], triMesh.v[triMesh.e[refineTri2[i]][2]], box[3], box[4], box[7])) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 	}
 	else if (level == 5) {// 1
@@ -1119,7 +1167,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				triMesh.v[refineTriPt1[i]][0] < box[6][0] &&
 				triMesh.v[refineTriPt1[i]][1] < box[6][1] &&
 				triMesh.v[refineTriPt1[i]][2] < box[6][2]) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 		for (i = 0; i < refineTri1.size(); i++)
 			if (Intersect(triMesh.v[triMesh.e[refineTri1[i]][0]], triMesh.v[triMesh.e[refineTri1[i]][1]], triMesh.v[triMesh.e[refineTri1[i]][2]], box[0], box[1], box[2]) ||
@@ -1134,7 +1182,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				Intersect(triMesh.v[triMesh.e[refineTri1[i]][0]], triMesh.v[triMesh.e[refineTri1[i]][1]], triMesh.v[triMesh.e[refineTri1[i]][2]], box[2], box[7], box[6]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri1[i]][0]], triMesh.v[triMesh.e[refineTri1[i]][1]], triMesh.v[triMesh.e[refineTri1[i]][2]], box[0], box[3], box[4]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri1[i]][0]], triMesh.v[triMesh.e[refineTri1[i]][1]], triMesh.v[triMesh.e[refineTri1[i]][2]], box[3], box[4], box[7])) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 	}
 	else if (level == 4) {// 0
@@ -1145,7 +1193,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				triMesh.v[refineTriPt0[i]][0] < box[6][0] &&
 				triMesh.v[refineTriPt0[i]][1] < box[6][1] &&
 				triMesh.v[refineTriPt0[i]][2] < box[6][2]) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 		for (i = 0; i < refineTri0.size(); i++)
 			if (Intersect(triMesh.v[triMesh.e[refineTri0[i]][0]], triMesh.v[triMesh.e[refineTri0[i]][1]], triMesh.v[triMesh.e[refineTri0[i]][2]], box[0], box[1], box[2]) ||
@@ -1160,7 +1208,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				Intersect(triMesh.v[triMesh.e[refineTri0[i]][0]], triMesh.v[triMesh.e[refineTri0[i]][1]], triMesh.v[triMesh.e[refineTri0[i]][2]], box[2], box[7], box[6]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri0[i]][0]], triMesh.v[triMesh.e[refineTri0[i]][1]], triMesh.v[triMesh.e[refineTri0[i]][2]], box[0], box[3], box[4]) ||
 				Intersect(triMesh.v[triMesh.e[refineTri0[i]][0]], triMesh.v[triMesh.e[refineTri0[i]][1]], triMesh.v[triMesh.e[refineTri0[i]][2]], box[3], box[4], box[7])) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 	}
 	else if (level == 3)// refine all
@@ -1172,7 +1220,7 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 					triMesh.v[triMesh.e[i][j]][0] < box[6][0] &&
 					triMesh.v[triMesh.e[i][j]][1] < box[6][1] &&
 					triMesh.v[triMesh.e[i][j]][2] < box[6][2]) {
-					intersect = true; return;
+					octreeArray[octreeId] = true; return;
 				}
 			if (Intersect(triMesh.v[triMesh.e[i][0]], triMesh.v[triMesh.e[i][1]], triMesh.v[triMesh.e[i][2]], box[0], box[1], box[2]) ||
 				Intersect(triMesh.v[triMesh.e[i][0]], triMesh.v[triMesh.e[i][1]], triMesh.v[triMesh.e[i][2]], box[0], box[2], box[3]) ||
@@ -1186,55 +1234,13 @@ inline void hexGen::ComputeCellValue(int octreeId, int level, bool& intersect) {
 				Intersect(triMesh.v[triMesh.e[i][0]], triMesh.v[triMesh.e[i][1]], triMesh.v[triMesh.e[i][2]], box[2], box[7], box[6]) ||
 				Intersect(triMesh.v[triMesh.e[i][0]], triMesh.v[triMesh.e[i][1]], triMesh.v[triMesh.e[i][2]], box[0], box[3], box[4]) ||
 				Intersect(triMesh.v[triMesh.e[i][0]], triMesh.v[triMesh.e[i][1]], triMesh.v[triMesh.e[i][2]], box[3], box[4], box[7])) {
-				intersect = true; return;
+				octreeArray[octreeId] = true; return;
 			}
 		}
 }
 
 void hexGen::ConstructOctree() {
 	GetCellValue();
-	// use CellQueue class
-	CellQueue prevQueue, curQueue;
-	int octreeId, level, i;
-	std::vector<int> cellSign;
-	int octreeIdx[8];
-
-	octreeId = 0;
-	prevQueue.Add(0);
-
-	while (!prevQueue.Empty()) {// empty is faster than get if we don't want to get the element
-		while (prevQueue.Get(octreeId)) {
-			cellSign.push_back(octreeId);
-			level = GetLevel(octreeId);
-			if (!octreeArray[octreeId].refineFlag && octreeArray[octreeId].intersect && level < octreeDepth) {
-				if (octreeId == 0) {
-					octreeArray[octreeId].refineFlag = true;
-					curQueue.Add(octreeId);
-				}
-				else {
-					RefineBrothers(octreeId, level, octreeIdx);
-
-					for (i = 0; i < 8; i++)
-						curQueue.Add(octreeIdx[i]);
-				}
-			}
-		}
-
-		while (curQueue.Get(octreeId)) {
-			level = GetLevel(octreeId);
-			for (i = 0; i < 8; i++)
-				prevQueue.Add(Child(octreeId, level, i));
-		}
-	}
-
-	for (i = 0; i < cellSign.size(); i++)
-		if (!octreeArray[cellSign[i]].refineFlag) {
-			cutArray[leafNum] = cellSign[i];
-			leafNum++;
-		}
-
-	// get strongly balanced octree
-	std::cout << "Generate strong balanced octree" << std::endl;
 	StrongBalancedOctree();
 	octreeArray.clear(); cutArray1.clear();
 }
@@ -1249,101 +1255,153 @@ inline void hexGen::OctreeidxToXYZ(int octreeId, int& x, int& y, int& z, int lev
 }
 
 inline void hexGen::RefineBrothers(int octreeId, int level, int* octreeIdx) {
-	int x, y, z;
-	int parentX, parentY, parentZ;
-
-	OctreeidxToXYZ(octreeId, x, y, z, level);
 	// parent XYZ
-	parentX = x / 2;
-	parentY = y / 2;
-	parentZ = z / 2;
-
-	octreeIdx[0] = XYZToOctreeidx(parentX * 2, parentY * 2, parentZ * 2, level);
-	octreeIdx[1] = XYZToOctreeidx(parentX * 2 + 1, parentY * 2, parentZ * 2, level);
-	octreeIdx[2] = XYZToOctreeidx(parentX * 2, parentY * 2 + 1, parentZ * 2, level);
-	octreeIdx[3] = XYZToOctreeidx(parentX * 2 + 1, parentY * 2 + 1, parentZ * 2, level);
-	octreeIdx[4] = XYZToOctreeidx(parentX * 2, parentY * 2, parentZ * 2 + 1, level);
-	octreeIdx[5] = XYZToOctreeidx(parentX * 2 + 1, parentY * 2, parentZ * 2 + 1, level);
-	octreeIdx[6] = XYZToOctreeidx(parentX * 2, parentY * 2 + 1, parentZ * 2 + 1, level);
-	octreeIdx[7] = XYZToOctreeidx(parentX * 2 + 1, parentY * 2 + 1, parentZ * 2 + 1, level);
+	int base = levelId[level];
+	int idx = octreeId - base;
+	int lRes = levelRes[level], lRes2 = lRes * lRes;
+	int x = idx % lRes / 2 * 2;
+	int y = (idx / lRes) % lRes / 2 * 2;
+	int z = idx / lRes2 / 2 * 2;
+	octreeIdx[0] = base + z * lRes2 + y * lRes + x;
+	octreeIdx[1] = base + z * lRes2 + y * lRes + x + 1;
+	octreeIdx[2] = base + z * lRes2 + (y + 1) * lRes + x;
+	octreeIdx[3] = base + z * lRes2 + (y + 1) * lRes + x + 1;
+	octreeIdx[4] = base + (z + 1) * lRes2 + y * lRes + x;
+	octreeIdx[5] = base + (z + 1) * lRes2 + y * lRes + x + 1;
+	octreeIdx[6] = base + (z + 1) * lRes2 + (y + 1) * lRes + x;
+	octreeIdx[7] = base + (z + 1) * lRes2 + (y + 1) * lRes + x + 1;
 
 	for (int i = 0; i < 8; i++)
-		octreeArray[octreeIdx[i]].refineFlag = true;
-}
-
-inline int hexGen::XYZToOctreeidx(int x, int y, int z, int level) {
-	int lRes = levelRes[level];
-
-	if (x < 0 || y < 0 || z < 0 || x >= lRes || y >= lRes || z >= lRes)
-		return -1;
-	else
-		return levelId[level] + z * lRes * lRes + y * lRes + x;
+		octreeArray[octreeIdx[i]] = true;
 }
 
 inline int hexGen::Child(int octreeId, int level, int i) {
-	int x, y, z;
-	int retIdx = 0;
-	OctreeidxToXYZ(octreeId, x, y, z, level);
-
+	int idx = octreeId - levelId[level];
+	int lRes = levelRes[level], lRes2 = lRes * lRes;
+	int x = idx % lRes * 2;
+	int y = (idx / lRes) % lRes * 2;
+	int z = idx / lRes2 * 2;
+	int retIdx;
+	int base = levelId[level + 1];
+	lRes = levelRes[level + 1]; lRes2 = lRes * lRes;
 	switch (i) {
 	case 0:
-		retIdx = XYZToOctreeidx(x * 2, y * 2, z * 2, level + 1);
+		retIdx = base + z * lRes2 + y * lRes + x;
 		break;
 	case 1:
-		retIdx = XYZToOctreeidx(x * 2 + 1, y * 2, z * 2, level + 1);
+		retIdx = base + z * lRes2 + y * lRes + x + 1;
 		break;
 	case 2:
-		retIdx = XYZToOctreeidx(x * 2, y * 2 + 1, z * 2, level + 1);
+		retIdx = base + z * lRes2 + (y + 1) * lRes + x;
 		break;
 	case 3:
-		retIdx = XYZToOctreeidx(x * 2 + 1, y * 2 + 1, z * 2, level + 1);
+		retIdx = base + z * lRes2 + (y + 1) * lRes + x + 1;
 		break;
 	case 4:
-		retIdx = XYZToOctreeidx(x * 2, y * 2, z * 2 + 1, level + 1);
+		retIdx = base + (z + 1) * lRes2 + y * lRes + x;
 		break;
 	case 5:
-		retIdx = XYZToOctreeidx(x * 2 + 1, y * 2, z * 2 + 1, level + 1);
+		retIdx = base + (z + 1) * lRes2 + y * lRes + x + 1;
 		break;
 	case 6:
-		retIdx = XYZToOctreeidx(x * 2, y * 2 + 1, z * 2 + 1, level + 1);
+		retIdx = base + (z + 1) * lRes2 + (y + 1) * lRes + x;
 		break;
 	case 7:
-		retIdx = XYZToOctreeidx(x * 2 + 1, y * 2 + 1, z * 2 + 1, level + 1);
+		retIdx = base + (z + 1) * lRes2 + (y + 1) * lRes + x + 1;
 		break;
 	}
 	return retIdx;
 }
 
 inline void hexGen::StrongBalancedOctree() {
-
 	int unbalancedNode = 0;
 	int i, j, k, l;
 	int x, y, z;
-	int level, level1, level2, level3;
+	int xx, yy, zz;
+	int level, level1, level2;
 	int leafcellId;
+	int cellSize;
 	int eightCell[8];
-	std::vector<int> vecEightCell;
+	std::vector<std::vector<std::vector<std::vector<int>>>> preVecEightCell(voxelSize + 1, std::vector<std::vector<std::vector<int>>>(voxelSize + 1, std::vector<std::vector<int>>(voxelSize + 1, std::vector<int>())));
+	
+	for (i = 0; i < leafNum; i++) {
+		leafcellId = cutArray[i];
+		level = getLevel[leafcellId];
+		cellSize = voxelSize / (1 << level);
+		OctreeidxToXYZ(leafcellId, x, y, z, level);
+
+		for (j = 0; j < 8; j++) {
+			switch (j) {
+			case 0:
+				xx = x * cellSize;
+				yy = y * cellSize;
+				zz = z * cellSize;
+				break;
+			case 1:
+				xx = (x + 1) * cellSize;
+				yy = y * cellSize;
+				zz = z * cellSize;
+				break;
+			case 2:
+				xx = (x + 1) * cellSize;
+				yy = y * cellSize;
+				zz = (z + 1) * cellSize;
+				break;
+			case 3:
+				xx = x * cellSize;
+				yy = y * cellSize;
+				zz = (z + 1) * cellSize;
+				break;
+			case 4:
+				xx = x * cellSize;
+				yy = (y + 1) * cellSize;
+				zz = z * cellSize;
+				break;
+			case 5:
+				xx = (x + 1) * cellSize;
+				yy = (y + 1) * cellSize;
+				zz = z * cellSize;
+				break;
+			case 6:
+				xx = (x + 1) * cellSize;
+				yy = (y + 1) * cellSize;
+				zz = (z + 1) * cellSize;
+				break;
+			case 7:
+				xx = x * cellSize;
+				yy = (y + 1) * cellSize;
+				zz = (z + 1) * cellSize;
+				break;
+			}
+			preVecEightCell[xx][yy][zz].push_back(leafcellId);
+		}
+	}
 
 	for (i = 0; i < leafNum; i++) {
 		leafcellId = cutArray[i];
-		level = GetLevel(leafcellId);
+		level = getLevel[leafcellId];
 		OctreeidxToXYZ(leafcellId, x, y, z, level);
 
-		if (IsSharedByEightCells(x, y, z, level, vecEightCell) == 8) {
-			std::sort(vecEightCell.begin(), vecEightCell.end());
-			level1 = GetLevel(vecEightCell[7]);
+		cellSize = voxelSize / (1 << level);
+		xx = x * cellSize;
+		yy = y * cellSize;
+		zz = z * cellSize;
 
-			for (j = 0; j < 7; j++) {
-				level2 = GetLevel(vecEightCell[j]);
+		if (preVecEightCell[xx][yy][zz].size() == 8) {
+			level1 = 0;
+			for (j = 0; j < 8; j++) {
+				level2 = getLevel[preVecEightCell[xx][yy][zz][j]];
+				level1 = (level1 < level2 ? level2 : level1);
+			}
 
-				if (level1 - level2 > 1 && !octreeArray[vecEightCell[j]].refineFlag) {
-					octreeArray[vecEightCell[j]].refineFlag = true;
-					RefineBrothers(vecEightCell[j], level2, eightCell);
-
+			for (j = 0; j < 8; j++) {
+				level2 = getLevel[preVecEightCell[xx][yy][zz][j]];
+				if (level1 - level2 > 1 && !octreeArray[preVecEightCell[xx][yy][zz][j]]) {
+					octreeArray[preVecEightCell[xx][yy][zz][j]] = true;
+					RefineBrothers(preVecEightCell[xx][yy][zz][j], level2, eightCell);
 					for (k = 0; k < 8; k++)
 						for (l = 0; l < 8; l++) {
-							level3 = GetLevel(eightCell[k]);
-							cutArray.push_back(Child(eightCell[k], level3, l));
+							cutArray.push_back(Child(eightCell[k], getLevel[eightCell[k]], l));
 							leafNum++;
 						}
 					unbalancedNode++;
@@ -1355,7 +1413,7 @@ inline void hexGen::StrongBalancedOctree() {
 	int leafNum1 = 0;
 
 	for (i = 0; i < cutArray.size(); i++)
-		if (!octreeArray[cutArray[i]].refineFlag) {
+		if (!octreeArray[cutArray[i]]) {
 			cutArray1[leafNum1] = cutArray[i];
 			leafNum1++;
 		}
@@ -1367,88 +1425,6 @@ inline void hexGen::StrongBalancedOctree() {
 
 	if (unbalancedNode > 0)
 		StrongBalancedOctree();
-}
-
-inline int hexGen::IsSharedByEightCells(int x, int y, int z, int level, std::vector<int>& vecEightCell) {
-	int xx, yy, zz;
-	int cellsize = voxelSize / (1 << level);
-	int numberCells = 0;
-	vecEightCell.clear();
-	// get global coordinates
-	xx = x * cellsize;
-	yy = y * cellsize;
-	zz = z * cellsize;
-
-	int fLeafcellId;
-	int fLevel;
-	int fCellSize;
-	int fX, fY, fZ;
-	int fXx, fYy, fZz;
-
-	for (int i = 0; i < leafNum; i++) {
-		fLeafcellId = cutArray[i];
-		fLevel = GetLevel(fLeafcellId);
-		fCellSize = voxelSize / (1 << fLevel);
-		OctreeidxToXYZ(fLeafcellId, fX, fY, fZ, fLevel);
-
-		for (int j = 0; j < 8; j++) {
-			switch (j) {
-			case 0:
-				fXx = fX * fCellSize;
-				fYy = fY * fCellSize;
-				fZz = fZ * fCellSize;
-				break;
-			case 1:
-				fXx = (fX + 1) * fCellSize;
-				fYy = fY * fCellSize;
-				fZz = fZ * fCellSize;
-				break;
-			case 2:
-				fXx = (fX + 1) * fCellSize;
-				fYy = fY * fCellSize;
-				fZz = (fZ + 1) * fCellSize;
-				break;
-			case 3:
-				fXx = fX * fCellSize;
-				fYy = fY * fCellSize;
-				fZz = (fZ + 1) * fCellSize;
-				break;
-			case 4:
-				fXx = fX * fCellSize;
-				fYy = (fY + 1) * fCellSize;
-				fZz = fZ * fCellSize;
-				break;
-			case 5:
-				fXx = (fX + 1) * fCellSize;
-				fYy = (fY + 1) * fCellSize;
-				fZz = fZ * fCellSize;
-				break;
-			case 6:
-				fXx = (fX + 1) * fCellSize;
-				fYy = (fY + 1) * fCellSize;
-				fZz = (fZ + 1) * fCellSize;
-				break;
-			case 7:
-				fXx = fX * fCellSize;
-				fYy = (fY + 1) * fCellSize;
-				fZz = (fZ + 1) * fCellSize;
-				break;
-			}
-
-			if (fXx == xx && fYy == yy && fZz == zz) {
-				vecEightCell.push_back(fLeafcellId);
-				numberCells++;
-			}
-		}
-	}
-
-	return numberCells;
-}
-
-inline int hexGen::GetLevel(int octreeId) {
-	for (int i = 0; i <= 10; i++)
-		if (levelId[i] > octreeId)
-			return i - 1;
 }
 
 void hexGen::OutputOctree(const char* fileName) {
@@ -1465,7 +1441,7 @@ void hexGen::OutputOctree(const char* fileName) {
 	for (i = 0; i < leafNum; i++)
 	{
 		octreeId = cutArray[i];
-		level = GetLevel(octreeId);
+		level = getLevel[octreeId];
 		cellsize = voxelSize / (1 << level);
 		OctreeidxToXYZ(octreeId, x, y, z, level);
 		// cube shape
@@ -2581,99 +2557,6 @@ void hexGen::ReadDualFullHex(const char* inputFileName) {
 void hexGen::RemoveOutsideElement(const char* fileName) {// write from hexMesh to octreeMesh (leafNum)
 	int i, j, k, l, idx[27]; bool pass, inside, overlap; double alpha, ref[19][3], tmp[3], tmp2[3], dir[3];
 
-	//leafNum = hexMesh.eNum;
-	//delete[] octreeMesh.v;
-	//octreeMesh.v = nullptr;
-	//for (i = 0; i < octreeENum; i++) {
-	//	delete[] octreeMesh.e[i];
-	//	octreeMesh.e[i] = nullptr;
-	//}
-	//delete[] octreeMesh.e;
-	//octreeMesh.e = nullptr;
-	//octreeMesh.Initialize(hexMesh.eNum * 8, hexMesh.vNum * 8);
-	//octreeMesh.vNum = hexMesh.vNum;
-	//for (j = 0; j < hexMesh.eNum; j++)
-	//	for (k = 0; k < 8; k++)
-	//		octreeMesh.e[j][k] = hexMesh.e[j][k];
-	//for (j = 0; j < hexMesh.vNum; j++)
-	//	for (k = 0; k < 3; k++)
-	//		octreeMesh.v[j][k] = hexMesh.v[j][k];
-	//for (j = 0; j < hexMesh.eNum; j++) {
-	//	for (k = 0; k < 3; k++) {
-	//		ref[0][k] = 0.5 * (hexMesh.v[hexMesh.e[j][0]][k] + hexMesh.v[hexMesh.e[j][3]][k]);
-	//		ref[1][k] = 0.5 * (hexMesh.v[hexMesh.e[j][0]][k] + hexMesh.v[hexMesh.e[j][1]][k]);
-	//		ref[2][k] = 0.5 * (hexMesh.v[hexMesh.e[j][1]][k] + hexMesh.v[hexMesh.e[j][2]][k]);
-	//		ref[3][k] = 0.5 * (hexMesh.v[hexMesh.e[j][2]][k] + hexMesh.v[hexMesh.e[j][3]][k]);
-	//		ref[4][k] = 0.25 * (hexMesh.v[hexMesh.e[j][0]][k] + hexMesh.v[hexMesh.e[j][1]][k] +
-	//			hexMesh.v[hexMesh.e[j][2]][k] + hexMesh.v[hexMesh.e[j][3]][k]);
-	//		ref[5][k] = 0.5 * (hexMesh.v[hexMesh.e[j][0]][k] + hexMesh.v[hexMesh.e[j][4]][k]);
-	//		ref[6][k] = 0.25 * (hexMesh.v[hexMesh.e[j][0]][k] + hexMesh.v[hexMesh.e[j][1]][k] +
-	//			hexMesh.v[hexMesh.e[j][5]][k] + hexMesh.v[hexMesh.e[j][4]][k]);
-	//		ref[7][k] = 0.5 * (hexMesh.v[hexMesh.e[j][1]][k] + hexMesh.v[hexMesh.e[j][5]][k]);
-	//		ref[8][k] = 0.25 * (hexMesh.v[hexMesh.e[j][0]][k] + hexMesh.v[hexMesh.e[j][3]][k] +
-	//			hexMesh.v[hexMesh.e[j][7]][k] + hexMesh.v[hexMesh.e[j][4]][k]);
-	//		ref[9][k] = 0.125 * (hexMesh.v[hexMesh.e[j][0]][k] + hexMesh.v[hexMesh.e[j][1]][k] +
-	//			hexMesh.v[hexMesh.e[j][2]][k] + hexMesh.v[hexMesh.e[j][3]][k] +
-	//			hexMesh.v[hexMesh.e[j][4]][k] + hexMesh.v[hexMesh.e[j][5]][k] +
-	//			hexMesh.v[hexMesh.e[j][6]][k] + hexMesh.v[hexMesh.e[j][7]][k]);
-	//		ref[10][k] = 0.25 * (hexMesh.v[hexMesh.e[j][1]][k] + hexMesh.v[hexMesh.e[j][2]][k] +
-	//			hexMesh.v[hexMesh.e[j][6]][k] + hexMesh.v[hexMesh.e[j][5]][k]);
-	//		ref[11][k] = 0.5 * (hexMesh.v[hexMesh.e[j][3]][k] + hexMesh.v[hexMesh.e[j][7]][k]);
-	//		ref[12][k] = 0.25 * (hexMesh.v[hexMesh.e[j][3]][k] + hexMesh.v[hexMesh.e[j][2]][k] +
-	//			hexMesh.v[hexMesh.e[j][6]][k] + hexMesh.v[hexMesh.e[j][7]][k]);
-	//		ref[13][k] = 0.5 * (hexMesh.v[hexMesh.e[j][2]][k] + hexMesh.v[hexMesh.e[j][6]][k]);
-	//		ref[14][k] = 0.5 * (hexMesh.v[hexMesh.e[j][4]][k] + hexMesh.v[hexMesh.e[j][7]][k]);
-	//		ref[15][k] = 0.5 * (hexMesh.v[hexMesh.e[j][4]][k] + hexMesh.v[hexMesh.e[j][5]][k]);
-	//		ref[16][k] = 0.5 * (hexMesh.v[hexMesh.e[j][5]][k] + hexMesh.v[hexMesh.e[j][6]][k]);
-	//		ref[17][k] = 0.5 * (hexMesh.v[hexMesh.e[j][6]][k] + hexMesh.v[hexMesh.e[j][7]][k]);
-	//		ref[18][k] = 0.25 * (hexMesh.v[hexMesh.e[j][4]][k] + hexMesh.v[hexMesh.e[j][5]][k] +
-	//			hexMesh.v[hexMesh.e[j][6]][k] + hexMesh.v[hexMesh.e[j][7]][k]);
-	//	}
-	//	idx[19] = hexMesh.e[j][0]; idx[20] = hexMesh.e[j][1]; idx[21] = hexMesh.e[j][2]; idx[22] = hexMesh.e[j][3];
-	//	idx[23] = hexMesh.e[j][4]; idx[24] = hexMesh.e[j][5]; idx[25] = hexMesh.e[j][6]; idx[26] = hexMesh.e[j][7];
-	//	for (k = 0; k < 19; k++) {
-	//		overlap = false;
-	//		if (k != 9)
-	//			for (l = hexMesh.vNum; l < octreeMesh.vNum; l++)
-	//				if (dist(octreeMesh.v[l], ref[k]) < DIST_THRES) {// overlap
-	//					idx[k] = l;
-	//					overlap = true;
-	//					break;
-	//				}
-	//		if (!overlap) {// create new point
-	//			idx[k] = octreeMesh.vNum;
-	//			octreeMesh.v[octreeMesh.vNum][0] = ref[k][0];
-	//			octreeMesh.v[octreeMesh.vNum][1] = ref[k][1];
-	//			octreeMesh.v[octreeMesh.vNum][2] = ref[k][2];
-	//			octreeMesh.vNum++;
-	//		}
-	//	}
-	//	for (k = 0; k < 8; k++)
-	//		octreeMesh.e[j][k] = idx[refinementOnce[0][k]];
-	//	for (k = 1; k < 8; k++) {
-	//		for (l = 0; l < 8; l++)
-	//			octreeMesh.e[leafNum][l] = idx[refinementOnce[k][l]];
-	//		leafNum++;
-	//	}
-	//}
-	//delete[] hexMesh.v;
-	//hexMesh.v = nullptr;
-	//for (i = 0; i < hexMeshENum; i++) {
-	//	delete[] hexMesh.e[i];
-	//	hexMesh.e[i] = nullptr;
-	//}
-	//delete[] hexMesh.e;
-	//hexMesh.e = nullptr;
-	//hexMesh.Initialize(leafNum, octreeMesh.vNum);
-	//hexMesh.eNum = leafNum;
-	//hexMesh.vNum = octreeMesh.vNum;
-	//for (j = 0; j < leafNum; j++)
-	//	for (k = 0; k < 8; k++)
-	//		hexMesh.e[j][k] = octreeMesh.e[j][k];
-	//for (j = 0; j < hexMesh.vNum; j++)
-	//	for (k = 0; k < 3; k++)
-	//		hexMesh.v[j][k] = octreeMesh.v[j][k];
-
 	leafNum = 0; octreeMesh.vNum = 0; std::vector<double> deletePoint(hexMesh.vNum, MAX_NUM2);
 
 	for (i = 0; i < hexMesh.vNum; i++) {
@@ -3085,7 +2968,7 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 				}
 	projNum.clear();
 
-	double(*g)[3], target[3], minDist, dis, sJL = 0, tmp[3], tmp2[3], LEARNING_RATE = 0.8*1e-3f, aveDist = MAX_NUM2, smallDist = 114514, prop,
+	double(*g)[3], target[3], minDist, dis, sJL = 0, tmp[3], tmp2[3], LEARNING_RATE = 1e-4f, aveDist = MAX_NUM2, smallDist = 114514, prop,
 		x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, x5, y5, z5, x6, y6, z6, x7, y7, z7;
 	g = new double[2 * sPIdx + bP2.size()][3];// gradient
 	int minIdx[9], maxDistIdx = -114514;
@@ -4288,14 +4171,10 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 					pow((pow(x3 - x7, 2) + pow(y3 - y7, 2) + pow(z3 - z7, 2)) * (pow(x4 - x7, 2) + pow(y4 - y7, 2) + pow(z4 - z7, 2)) * (pow(x6 - x7, 2) + pow(y6 - y7, 2) + pow(z6 - z7, 2)),
 						1.5);
 			}
-			if (!pair)// >0
-				sJL++;
+			if (!pair) sJL++;
 		}
 		if (sJL == affElemNum) allPositive = true;
 		else allPositive = false;
-
-		//for (j = 0; j < sPIdx; j++)
-		//	for (k = 0; k < 3; k++) g[j][k] *= 1.25;
 
 		if (allPositive) {
 			// optimize point distance to surface
@@ -4309,9 +4188,9 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 					maxDistIdx = bP[j];
 				}
 				// calculate gradient
-				g[j][0] = -2.5 * (octreeMesh.v[bP[j]][0] - target[0]);
-				g[j][1] = -2.5 * (octreeMesh.v[bP[j]][1] - target[1]);
-				g[j][2] = -2.5 * (octreeMesh.v[bP[j]][2] - target[2]);
+				g[j][0] = -4 * (octreeMesh.v[bP[j]][0] - target[0]);
+				g[j][1] = -4 * (octreeMesh.v[bP[j]][1] - target[1]);
+				g[j][2] = -4 * (octreeMesh.v[bP[j]][2] - target[2]);
 			}
 			aveDist /= sPIdx;
 		}

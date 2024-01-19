@@ -3,19 +3,19 @@
 
 // constants
 const double PI = 3.1415926535897932384626433;
-const int VOXEL_SIZE = 9;// log2 voxel size
-const double C_THRES[5] = { 0.15, 0.3, 0.6, 1.2, 2.4 };// 4 5 6 7 8
-const double H_THRES[5] = { 16,8,4,2,1 };// 4 5 6 7 8
-const int MAX_NUM = 10000000;// maximum number
+const int VOXEL_SIZE = 10;// log2 voxel size
+const double C_THRES[6] = { 0.1, 0.2, 0.4, 0.8, 1.6, 3.2 };// 4 5 6 7 8 9
+const double H_THRES[6] = { 16, 8, 4, 2, 1, 0.5 };// 4 5 6 7 8 9
+const int MAX_NUM = 100000000;// maximum number
 const int MAX_NUM2 = 2147483647;
 const double DIST_THRES = 1e-12;// threshold when judging point overlap
 const double DIST_THRES2 = sqrt(DIST_THRES);
-const double DIST_THRES3 = 3.5e-3 / (1 << (VOXEL_SIZE - 7)) / (1 << (VOXEL_SIZE - 7));
-const double OUT_IN_RATIO = 0.125;
+const double DIST_THRES3 = 1.0f / (1 << (2 * (VOXEL_SIZE - 3)));
+const double OUT_IN_RATIO = 0.1;
 const double COS_THRES = 1e-2;// eliminate invalid unmanifold hexes, set it slightly greater than zero to avoid numerical error problem
 const int UPDATE_EVERY = 1000;
 const int SMOOTH_EPOCH = 1;// smoothing optimization epoch
-const double CELL_DETECT = 1;
+const double CELL_DETECT = .75;
 
 // defines
 #define ORIENT_2D(a, b, c)  ((a[0] - c[0]) * (b[1] - c[1]) - (a[1] - c[1]) * (b[0] - c[0]))

@@ -3,7 +3,6 @@ project(HexGen VERSION 1.0)
 
 set(SOURCES
     Main.cpp
-    CellQueue.h
     HexGen.cpp
     HexGen.h
     Initialization.h
