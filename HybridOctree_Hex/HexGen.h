@@ -21,14 +21,14 @@ inline int Intersect(double p1[3], double q1[3], double r1[3], double p2[3], dou
 
 // check if point p intersects with triangle abc in direction dir 0: not intersect 1: intersect e: intersect point
 inline double TriArea(double a, double b, double c);
-// -1: need another dir; 0: not intersect; 1: intersect
+// -2: need another dir; 0: not intersect; 1: intersect
 inline int Intersect(double a[3], double b[3], double c[3], double p[3], double dir[3], double* e, double& alpha);
 // distance between a point and a triangle in 3d space
 inline double PointToTri(double a[3], double b[3], double c[3], double p[3], double* q, double currMin);
 
 // scaled jacobian
 inline double Sj(double p0[3], double p1[3], double p2[3], double p3[3], double p4[3], double p5[3], double p6[3], double p7[3]);
-inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p4[3], double p5[3], double p6[3], double p7[3], int* minIdx);
+inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p4[3], double p5[3], double p6[3], double p7[3], double* minIdx);
 
 // hexGen
 class hexGen

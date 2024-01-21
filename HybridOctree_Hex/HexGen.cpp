@@ -555,7 +555,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	double len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	double len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[0] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[0] = 0;
 	else {
 		if (volume <= 0) minIdx[0] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[0] = 1;
@@ -581,7 +581,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[1] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[1] = 0;
 	else {
 		if (volume <= 0) minIdx[1] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[1] = 1;
@@ -607,7 +607,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[2] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[2] = 0;
 	else {
 		if (volume <= 0) minIdx[2] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[2] = 1;
@@ -633,7 +633,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[3] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[3] = 0;
 	else {
 		if (volume <= 0) minIdx[3] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[3] = 1;
@@ -659,7 +659,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[4] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[4] = 0;
 	else {
 		if (volume <= 0) minIdx[4] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[4] = 1;
@@ -685,7 +685,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[5] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[5] = 0;
 	else {
 		if (volume <= 0) minIdx[5] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[5] = 1;
@@ -711,7 +711,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[6] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[6] = 0;
 	else {
 		if (volume <= 0) minIdx[6] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[6] = 1;
@@ -737,7 +737,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[7] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[7] = 0;
 	else {
 		if (volume <= 0) minIdx[7] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[7] = 1;
@@ -763,7 +763,7 @@ inline void iSj(double p0[3], double p1[3], double p2[3], double p3[3], double p
 	len2 = x2 * x2 + y2 * y2 + z2 * z2;
 	len = std::sqrt(len0 * len1 * len2);
 
-	if ((len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) && volume <= ELEM_THRES * len) minIdx[8] = 0;
+	if (len0 <= DIST_THRES3 || len1 <= DIST_THRES3 || len2 <= DIST_THRES3) minIdx[8] = 0;
 	else {
 		if (volume <= 0) minIdx[8] = 0;
 		else if (volume <= ELEM_THRES * len) minIdx[8] = 1;
@@ -876,8 +876,8 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 							lPublic[1] = -triMesh.v[triMesh.e[j][k]][1] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][1];
 							lPublic[2] = -triMesh.v[triMesh.e[j][k]][2] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][2];
 							CROSS(cross1, l1, lPublic)
-							CROSS(cross2, l2, lPublic)
-							angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
+								CROSS(cross2, l2, lPublic)
+								angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
 							angle = (angle >= -1) ? angle : -1;
 							angle = (angle <= 1) ? acos(angle) : 0;
 							triMesh.r[triMesh.e[j][k]] += (angle - PI) * (angle - PI);
@@ -917,10 +917,10 @@ inline void hexGen::GetCellValue() {
 							if (triMesh.r[triMesh.e[i][j]] > C_THRES[4]) {
 								refineTri4.push_back(i);
 								refineTriPt4.push_back(triMesh.e[i][j]);
-								if (triMesh.r[triMesh.e[i][j]] > C_THRES[5]) {
-									refineTri5.push_back(i);
-									refineTriPt5.push_back(triMesh.e[i][j]);
-								}
+								//if (triMesh.r[triMesh.e[i][j]] > C_THRES[5]) {
+								//	refineTri5.push_back(i);
+								//	refineTriPt5.push_back(triMesh.e[i][j]);
+								//}
 							}
 						}
 					}
@@ -967,11 +967,11 @@ inline void hexGen::GetCellValue() {
 									for (k = 0; k < 3; k++) {
 										refineTri4.push_back(i); refineTri4.push_back(j); refineTriPt4.push_back(triMesh.e[i][k]);
 									}
-									if (len < H_THRES[5]) {
-										for (k = 0; k < 3; k++) {
-											refineTri5.push_back(i); refineTri5.push_back(j); refineTriPt5.push_back(triMesh.e[i][k]);
-										}
-									}
+									//if (len < H_THRES[5]) {
+									//	for (k = 0; k < 3; k++) {
+									//		refineTri5.push_back(i); refineTri5.push_back(j); refineTriPt5.push_back(triMesh.e[i][k]);
+									//	}
+									//}
 								}
 							}
 						}
@@ -989,8 +989,8 @@ inline void hexGen::GetCellValue() {
 	refineTriPt3.assign(s3.begin(), s3.end());
 	std::unordered_set<int> s4(refineTriPt4.begin(), refineTriPt4.end());
 	refineTriPt4.assign(s4.begin(), s4.end());
-	std::unordered_set<int> s5(refineTriPt5.begin(), refineTriPt5.end());
-	refineTriPt5.assign(s5.begin(), s5.end());
+	//std::unordered_set<int> s5(refineTriPt5.begin(), refineTriPt5.end());
+	//refineTriPt5.assign(s5.begin(), s5.end());
 	std::unordered_set<int> s00(refineTri0.begin(), refineTri0.end());
 	refineTri0.assign(s00.begin(), s00.end());
 	std::unordered_set<int> s01(refineTri1.begin(), refineTri1.end());
@@ -1001,8 +1001,8 @@ inline void hexGen::GetCellValue() {
 	refineTri3.assign(s03.begin(), s03.end());
 	std::unordered_set<int> s04(refineTri4.begin(), refineTri4.end());
 	refineTri4.assign(s04.begin(), s04.end());
-	std::unordered_set<int> s05(refineTri5.begin(), refineTri5.end());
-	refineTri5.assign(s05.begin(), s05.end());
+	//std::unordered_set<int> s05(refineTri5.begin(), refineTri5.end());
+	//refineTri5.assign(s05.begin(), s05.end());
 	for (i = levelId[octreeDepth] - 1; i > -1; i--)
 		ComputeCellValue(i, getLevel[i]);
 }
@@ -1055,33 +1055,33 @@ inline void hexGen::ComputeCellValue(int octreeId, int level) {
 	box[7][1] = START_POINT[1] + (j + 0.5 + CELL_DETECT) * cellsize;
 	box[7][2] = START_POINT[2] + (k + 0.5 + CELL_DETECT) * cellsize;
 
-	if (level == 9) {// 5
-		for (i = 0; i < refineTriPt5.size(); i++)
-			if (triMesh.v[refineTriPt5[i]][0] > box[0][0] &&
-				triMesh.v[refineTriPt5[i]][1] > box[0][1] &&
-				triMesh.v[refineTriPt5[i]][2] > box[0][2] &&
-				triMesh.v[refineTriPt5[i]][0] < box[6][0] &&
-				triMesh.v[refineTriPt5[i]][1] < box[6][1] &&
-				triMesh.v[refineTriPt5[i]][2] < box[6][2]) {
-				octreeArray[octreeId] = true; return;
-			}
-		for (i = 0; i < refineTri5.size(); i++)
-			if (Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[1], box[2]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[2], box[3]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[4], box[5], box[6]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[4], box[6], box[7]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[1], box[5]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[5], box[4]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[1], box[2], box[5]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[5], box[6]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[3], box[7]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[7], box[6]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[3], box[4]) ||
-				Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[3], box[4], box[7])) {
-				octreeArray[octreeId] = true; return;
-			}
-	}
-	else if (level == 8) {// 4
+	//if (level == 9) {// 5
+	//	for (i = 0; i < refineTriPt5.size(); i++)
+	//		if (triMesh.v[refineTriPt5[i]][0] > box[0][0] &&
+	//			triMesh.v[refineTriPt5[i]][1] > box[0][1] &&
+	//			triMesh.v[refineTriPt5[i]][2] > box[0][2] &&
+	//			triMesh.v[refineTriPt5[i]][0] < box[6][0] &&
+	//			triMesh.v[refineTriPt5[i]][1] < box[6][1] &&
+	//			triMesh.v[refineTriPt5[i]][2] < box[6][2]) {
+	//			octreeArray[octreeId] = true; return;
+	//		}
+	//	for (i = 0; i < refineTri5.size(); i++)
+	//		if (Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[1], box[2]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[2], box[3]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[4], box[5], box[6]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[4], box[6], box[7]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[1], box[5]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[5], box[4]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[1], box[2], box[5]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[5], box[6]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[3], box[7]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[2], box[7], box[6]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[0], box[3], box[4]) ||
+	//			Intersect(triMesh.v[triMesh.e[refineTri5[i]][0]], triMesh.v[triMesh.e[refineTri5[i]][1]], triMesh.v[triMesh.e[refineTri5[i]][2]], box[3], box[4], box[7])) {
+	//			octreeArray[octreeId] = true; return;
+	//		}
+	//}
+	if (level == 8) {// 4
 		for (i = 0; i < refineTriPt4.size(); i++)
 			if (triMesh.v[refineTriPt4[i]][0] > box[0][0] &&
 				triMesh.v[refineTriPt4[i]][1] > box[0][1] &&
@@ -1323,7 +1323,7 @@ inline void hexGen::StrongBalancedOctree() {
 	int cellSize;
 	int eightCell[8];
 	std::vector<std::vector<std::vector<std::vector<int>>>> preVecEightCell(voxelSize + 1, std::vector<std::vector<std::vector<int>>>(voxelSize + 1, std::vector<std::vector<int>>(voxelSize + 1, std::vector<int>())));
-	
+
 	for (i = 0; i < leafNum; i++) {
 		leafcellId = cutArray[i];
 		level = getLevel[leafcellId];
@@ -2444,7 +2444,7 @@ void hexGen::DualFullHexMeshExtraction(const char* fileName) {
 						p16[13][0] = p[29][0]; p16[13][1] = p[29][1]; p16[13][2] = p[29][2];
 						p16[14][0] = p[30][0]; p16[14][1] = p[30][1]; p16[14][2] = p[30][2];
 						p16[15][0] = p[31][0]; p16[15][1] = p[31][1]; p16[15][2] = p[31][2];
-						
+
 						p16[2][0] += p[13][0] - p[30][0] + 2 * z[0] / 3; p16[2][1] += p[13][1] - p[30][1] + 2 * z[1] / 3; p16[2][2] += p[13][2] - p[30][2] + 2 * z[2] / 3;
 						p16[4][0] += p[13][0] - p[30][0] + 2 * z[0] / 3; p16[4][1] += p[13][1] - p[30][1] + 2 * z[1] / 3; p16[4][2] += p[13][2] - p[30][2] + 2 * z[2] / 3;
 						// elements
@@ -2872,11 +2872,6 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 	int affElemNum = leafNum;
 	for (i = 0; i < octreeMesh.vNum; i++)
 		for (j = 0; j < p2E[i].size(); j++) {
-			//pair = false;
-			//for (k = 0; k < 8; k++) if (aE[p2E[i][j]][k] != -1) {
-			//	pair = true; break;
-			//}
-			//if (!pair) continue;
 			for (k = 0; k < 8; k++)
 				if (aE[p2E[i][j]][k] == -1 && octreeMesh.e[p2E[i][j]][k] == i) {
 					aE[p2E[i][j]][k] = 2 * sPIdx + bP2.size();
@@ -2884,9 +2879,6 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 					break;
 				}
 		}
-
-	//for (i = 0; i < leafNum; i++)
-	//	for (j = 0; j < 8; j++) if (aE[i][j] == -1) aE[i][j] = 2 * sPIdx + bP2.size();
 
 	for (i = 0; i < sPIdx; i++) {
 		octreeMesh.v[i + octreeMesh.vNum][0] = octreeMesh.v[bP[i]][0];
@@ -2968,7 +2960,7 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 				}
 	projNum.clear();
 
-	double(*g)[3], target[3], minDist, dis, sJL = 0, tmp[3], tmp2[3], LEARNING_RATE = 1e-4f, aveDist = MAX_NUM2, smallDist = 114514, prop,
+	double(*g)[3], target[3], minDist, dis, sJL = 0, tmp[3], tmp2[3], LEARNING_RATE = 8.0e-4f, aveDist = MAX_NUM2, smallDist = 114514, prop,
 		x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, x5, y5, z5, x6, y6, z6, x7, y7, z7;
 	g = new double[2 * sPIdx + bP2.size()][3];// gradient
 	int minIdx[9], maxDistIdx = -114514;
@@ -2992,7 +2984,7 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 	i = 0;
 	while (true) {
 		i++;
-		for (j = 0; j <= 2 * sPIdx + bP2.size(); j++) {
+		for (j = 0; j < 2 * sPIdx + bP2.size(); j++) {
 			g[j][0] = 0; g[j][1] = 0; g[j][2] = 0;
 		}
 
@@ -4176,29 +4168,23 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 		if (sJL == affElemNum) allPositive = true;
 		else allPositive = false;
 
+		// optimize point distance to surface
 		if (allPositive) {
-			// optimize point distance to surface
-			aveDist = 0; smallDist = -1;
+			smallDist = -1;
 			for (j = sPIdx; j < 2 * sPIdx; j++) {
 				dis = PointToTri(triMesh.v[triMesh.e[triNum[j - sPIdx]][0]], triMesh.v[triMesh.e[triNum[j - sPIdx]][1]],
 					triMesh.v[triMesh.e[triNum[j - sPIdx]][2]], octreeMesh.v[bP[j]], target, MAX_NUM2);
-				aveDist += dis;
 				if (dis > smallDist) {
 					smallDist = dis;
 					maxDistIdx = bP[j];
 				}
 				// calculate gradient
-				g[j][0] = -4 * (octreeMesh.v[bP[j]][0] - target[0]);
-				g[j][1] = -4 * (octreeMesh.v[bP[j]][1] - target[1]);
-				g[j][2] = -4 * (octreeMesh.v[bP[j]][2] - target[2]);
+				g[j][0] = -3 * (octreeMesh.v[bP[j]][0] - target[0]);
+				g[j][1] = -3 * (octreeMesh.v[bP[j]][1] - target[1]);
+				g[j][2] = -3 * (octreeMesh.v[bP[j]][2] - target[2]);
 			}
-			aveDist /= sPIdx;
 		}
 
-		if (i % UPDATE_EVERY == 1) {
-			std::cout << sJL / affElemNum << "\t" << aveDist << "\t" << smallDist << "\t" << maxDistIdx << std::endl;
-			octreeMesh.WriteToVtk(fileName, BOX_LENGTH_RATIO, START_POINT);
-		}
 		// update with gradient
 		for (j = 0; j < 2 * sPIdx; j++) {
 			octreeMesh.v[bP[j]][0] += LEARNING_RATE * g[j][0];
@@ -4349,13 +4335,13 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 				}
 			}
 
-			// wojiubuxinxiele
-			smallDist = -1;
+			aveDist = 0; smallDist = -1;
 			for (j = sPIdx; j < 2 * sPIdx; j++) {
 				dis = PointToTri(triMesh.v[triMesh.e[triNum[j - sPIdx]][0]], triMesh.v[triMesh.e[triNum[j - sPIdx]][1]],
 					triMesh.v[triMesh.e[triNum[j - sPIdx]][2]], octreeMesh.v[bP[j]], target, MAX_NUM2);
+				aveDist += dis;
 				if (dis > smallDist) {
-					smallDist = dis; l = j - sPIdx;
+					smallDist = dis; maxDistIdx = bP[j];
 				}
 			}
 			k = 0;
@@ -4366,7 +4352,8 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 					octreeMesh.v[octreeMesh.e[j][4]], octreeMesh.v[octreeMesh.e[j][5]],
 					octreeMesh.v[octreeMesh.e[j][6]], octreeMesh.v[octreeMesh.e[j][7]]) <= ELEM_THRES) k++;
 			}
-			std::cout << "Try:"<< k <<" " << smallDist << " " << triNum[l] << std::endl;
+			std::cout << "badElem: " << k << " aveDist : " << aveDist / sPIdx << " maxDist : " << smallDist << " maxDistIdx : " << maxDistIdx << std::endl;
+			octreeMesh.WriteToVtk(fileName, BOX_LENGTH_RATIO, START_POINT);
 			if (k == 0 && smallDist < DIST_THRES2) {
 				if (ELEM_THRES == 0.01) ELEM_THRES = 0.53;
 				else ELEM_THRES += 0.01;
@@ -4454,7 +4441,6 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 						octreeMesh.v[bP[j + sPIdx]][2] = target[2];
 					}
 				}
-
 				octreeMesh.WriteToVtk("finalMesh.vtk", BOX_LENGTH_RATIO, START_POINT);
 				smallDist = 114514;
 			}
