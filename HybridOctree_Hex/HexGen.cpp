@@ -4352,7 +4352,7 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 					octreeMesh.v[octreeMesh.e[j][4]], octreeMesh.v[octreeMesh.e[j][5]],
 					octreeMesh.v[octreeMesh.e[j][6]], octreeMesh.v[octreeMesh.e[j][7]]) <= ELEM_THRES) k++;
 			}
-			std::cout << "badElem: " << k << " aveDist : " << aveDist / sPIdx << " maxDist : " << smallDist << " maxDistIdx : " << maxDistIdx << std::endl;
+			std::cout << "badElem: " << k << " aveDist: " << aveDist / sPIdx << " maxDist: " << smallDist << " maxDistIdx: " << maxDistIdx << std::endl;
 			octreeMesh.WriteToVtk(fileName, BOX_LENGTH_RATIO, START_POINT);
 			if (k == 0 && smallDist < DIST_THRES2) {
 				if (ELEM_THRES == 0.01) ELEM_THRES = 0.53;
