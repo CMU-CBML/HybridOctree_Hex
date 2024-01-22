@@ -28,6 +28,7 @@ Mesh Statistics:
 |chair|232460|192814|0.57|
 |chair1|50650|41034|0.58|
 |chinese_lion|351402|309525|0.55|
+|cup|386677|342009|0.58|
 |david|319465|282957|0.56|
 |deformed_armadillo|43216|34939|0.56|
 |dragonstand2|62576|50853|0.56|
