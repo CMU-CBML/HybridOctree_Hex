@@ -35,6 +35,7 @@ Mesh Statistics:
 |dancing_children|457139|396964|0.54|
 |david|319465|282957|0.56|
 |deformed_armadillo|43216|34939|0.56|
+|dente|129398|114812|0.58|
 |dragonstand2|62576|50853|0.56|
 |gargoyle|273704|236689|0.55|
 |head|62782|55038|0.55|
