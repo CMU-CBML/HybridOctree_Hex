@@ -32,6 +32,7 @@ Mesh Statistics:
 |Cup1|89032|73266|0.58|
 |dancer|58353|47994|0.56|
 |dancer2|43774|35142|0.57|
+|dancing_children|457139|396964|0.54|
 |david|319465|282957|0.56|
 |deformed_armadillo|43216|34939|0.56|
 |dragonstand2|62576|50853|0.56|
