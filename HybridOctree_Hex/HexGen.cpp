@@ -2960,7 +2960,7 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 				}
 	projNum.clear();
 
-	double(*g)[3], target[3], minDist, dis, sJL = 0, tmp[3], tmp2[3], LEARNING_RATE = 6.0e-4f, aveDist = MAX_NUM2, smallDist = 114514, prop,
+	double(*g)[3], target[3], minDist, dis, sJL = 0, tmp[3], tmp2[3], LEARNING_RATE = 5.0e-4f, aveDist = MAX_NUM2, smallDist = 114514, prop,
 		x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, x5, y5, z5, x6, y6, z6, x7, y7, z7;
 	g = new double[2 * sPIdx + bP2.size()][3];// gradient
 	int minIdx[9], maxDistIdx = -114514;

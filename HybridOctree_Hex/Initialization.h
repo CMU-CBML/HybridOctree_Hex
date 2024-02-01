@@ -11,11 +11,11 @@ const int MAX_NUM2 = 2147483647;
 const double DIST_THRES = 1e-12;// threshold when judging point overlap
 const double DIST_THRES2 = sqrt(DIST_THRES);
 const double DIST_THRES3 = 1.0f / (1 << (2 * VOXEL_SIZE - 6));
-const double OUT_IN_RATIO = 0.12;
+const double OUT_IN_RATIO = 0.125;
 const double COS_THRES = 1e-2;// eliminate invalid unmanifold hexes, set it slightly greater than zero to avoid numerical error problem
 const int UPDATE_EVERY = 1000;
 const int SMOOTH_EPOCH = 1;// smoothing optimization epoch
-const double CELL_DETECT = .75;
+const double CELL_DETECT = 1.0;
 
 // defines
 #define ORIENT_2D(a, b, c)  ((a[0] - c[0]) * (b[1] - c[1]) - (a[1] - c[1]) * (b[0] - c[0]))
