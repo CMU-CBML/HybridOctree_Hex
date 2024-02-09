@@ -783,12 +783,16 @@ void hexGen::InitializeOctree(const char* inputFileName, const char* outputFileN
 	cutArray.resize(MAX_NUM);
 	cutArray1.resize(MAX_NUM);
 	getLevel.resize(levelId[octreeDepth + 1]);
-	for (int i = 0; i < getLevel.size(); i++)
-		for (int j = octreeDepth; j > -1; j--)
-			if (levelId[j] <= i) {
-				getLevel[i] = j; break;
-			}
-
+	//for (int i = 0; i < getLevel.size(); i++)
+	//	for (int j = octreeDepth; j > -1; j--)
+	//		if (levelId[j] <= i) {
+	//			getLevel[i] = j; break;
+	//		}
+	getLevel[0] = 0;
+	for (int i = 1; i < octreeDepth; i++)
+	{
+		std::fill(getLevel.begin() + levelId[i], getLevel.begin() + levelId[i + 1], i);
+	}
 	ReadRawData(inputFileName, outputFileName);
 }
 
@@ -798,7 +802,7 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 		std::cerr << "ErrorCode 0: Wrong file name " << inputFileName << std::endl;
 		return;
 	}
-
+	
 	char line[256];
 	int i, j, k, l, m, points, elements;
 	double box[3][2];// x/y/z min/max
@@ -876,8 +880,8 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 							lPublic[1] = -triMesh.v[triMesh.e[j][k]][1] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][1];
 							lPublic[2] = -triMesh.v[triMesh.e[j][k]][2] + triMesh.v[triMesh.e[j][(k + publicIdx[0]) % 3]][2];
 							CROSS(cross1, l1, lPublic)
-								CROSS(cross2, l2, lPublic)
-								angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
+							CROSS(cross2, l2, lPublic)
+							angle = DOT(cross1, cross2) / sqrt(dist(0, 0, 0, cross1) * dist(0, 0, 0, cross2));
 							angle = (angle >= -1) ? angle : -1;
 							angle = (angle <= 1) ? acos(angle) : 0;
 							triMesh.r[triMesh.e[j][k]] += (angle - PI) * (angle - PI);
@@ -2723,7 +2727,7 @@ void hexGen::RemoveOutsideElement(const char* fileName) {// write from hexMesh t
 		for (l = 0; l < 6; l++)
 			if (faceTmp2[l][4] != -1) {
 				for (m0 = 0; m0 < 5; m0++) face[fIdx][m0] = faceTmp2[l][m0];
-				std::cout << face[fIdx][0] << " " << face[fIdx][1] << " " << face[fIdx][2] << " " << face[fIdx][3] << " " << face[fIdx][4] << " " << std::endl << std::endl;
+				std::cout << face[fIdx][0] << " " << face[fIdx][1] << " " << face[fIdx][2] << " " << face[fIdx][3] << " " << face[fIdx][4] << " " << std::endl;
 				fIdx++;
 			}
 	}
