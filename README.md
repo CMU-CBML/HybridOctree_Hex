@@ -60,4 +60,5 @@ Mesh Statistics:
 |oil_pump|233702|196455|0.54|
 |ramses|44790|37993|0.59|
 |red_circular_box|351881|313866|0.56|
+|sphereInShell|128626|108381|0.62|
 |thai_statue|64764|53831|0.55|
