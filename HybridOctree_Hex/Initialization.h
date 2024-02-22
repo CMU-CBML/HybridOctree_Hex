@@ -4,14 +4,14 @@
 // constants
 const double PI = 3.1415926535897932384626433;
 const int VOXEL_SIZE = 10;// log2 voxel size
-const double C_THRES[5] = { 0.1, 0.2, 0.4, 0.8, 1.6};// 4 5 6 7 8
+const double C_THRES[5] = { 0, 0, 0.4, 0.8, 1.6};// 4 5 6 7 8
 const double H_THRES[5] = { 16, 8, 4, 2, 1};// 4 5 6 7 8
 const int MAX_NUM = 100000000;// maximum number
 const int MAX_NUM2 = 2147483647;
 const double DIST_THRES = 1e-12;// threshold when judging point overlap
 const double DIST_THRES2 = sqrt(DIST_THRES);
 const double DIST_THRES3 = 1.0f / (1 << (2 * VOXEL_SIZE - 6));
-const double OUT_IN_RATIO = 0.125;
+const double OUT_IN_RATIO = 0.15;
 const double COS_THRES = 1e-2;// eliminate invalid unmanifold hexes, set it slightly greater than zero to avoid numerical error problem
 const int UPDATE_EVERY = 1000;
 const int SMOOTH_EPOCH = 1;// smoothing optimization epoch
