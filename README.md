@@ -1,7 +1,7 @@
 # HybridOctree_Hex
 Please download the latest release of the software.
 
-Paper: https://arxiv.org/abs/2401.05984
+Paper: https://www.sciencedirect.com/science/article/pii/S1877750324000711
 
 Mesh Statistics:
 |Model|#Vert|#Elem|Min SJ|
