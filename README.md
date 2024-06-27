@@ -1,7 +1,7 @@
 # HybridOctree_Hex
 Please download the latest release of the software.
 
-HybridOctree_Hex received the best technical poster award in \href{https://internationalmeshingroundtable.com/awards}{the 2024 International Meshing Roundtable}.
+HybridOctree_Hex received the best technical poster award in \href{the 2024 International Meshing Roundtable}{https://internationalmeshingroundtable.com/awards}.
 
 # Citation
 ```angular2html
