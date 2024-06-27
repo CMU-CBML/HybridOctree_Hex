@@ -1,7 +1,18 @@
 # HybridOctree_Hex
 Please download the latest release of the software.
 
-Paper: https://www.sciencedirect.com/science/article/pii/S1877750324000711
+# Citation
+```angular2html
+@article{tong2024hybridoctree_hex,
+  title={HybridOctree\_Hex: Hybrid octree-based adaptive all-hexahedral mesh generation with Jacobian control},
+  author={Tong, Hua and Halilaj, Eni and Zhang, Yongjie Jessica},
+  journal={Journal of Computational Science},
+  volume={78},
+  pages={102278},
+  year={2024},
+  publisher={Elsevier}
+}
+```
 
 Mesh Statistics:
 |Model|#Vert|#Elem|Min SJ|
