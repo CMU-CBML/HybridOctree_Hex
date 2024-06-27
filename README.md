@@ -14,7 +14,7 @@ Please download the latest release of the software.
 }
 ```
 
-Mesh Statistics:
+# Mesh Statistics:
 |Model|#Vert|#Elem|Min SJ|
 | :--: | :--: | :--: | :--: |
 |airplane1|29899|24318|0.57|
