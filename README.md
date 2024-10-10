@@ -79,7 +79,7 @@ HybridOctree_Hex received the best technical poster award in [the 2024 Internati
 |homer|166322|146056|0.57|
 |horse|102832|87595|0.57|
 |human1|148026|128154|0.60|
-|human2||||
+|human2|141982|119792|0.54|
 |human3||||
 |igea||||
 |insect||||
