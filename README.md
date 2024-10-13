@@ -90,7 +90,7 @@ HybridOctree_Hex received the best technical poster award in [the 2024 Internati
 |master_cylinder|286569|247194|0.53|
 |max|55222|47687|0.56|
 |moai|145934|127950|0.54|
-|mouse||||
+|mouse|99657|85890|0.53|
 |oil_pump|233702|196455|0.54|
 |oni||||
 |pear||||
