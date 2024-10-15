@@ -100,7 +100,7 @@ HybridOctree_Hex received the best technical poster award in [the 2024 Internati
 |ramses|44790|37993|0.59|
 |red_circular_box|351881|313866|0.56|
 |retinal|19021|15950|0.58|
-|rocker||||
+|rocker|93607|80266|0.54|
 |rolling_stage||||
 |santa||||
 |screwdriver||||
