@@ -106,7 +106,7 @@ HybridOctree_Hex received the best technical poster award in [the 2024 Internati
 |screwdriver|147661|126098|0.53|
 |sediapatch|56036|47445|0.55|
 |sphereInShell|128626|108381|0.62|
-|sphinx||||
+|sphinx|206944|183216|0.55|
 |teaport||||
 |thai_statue|64764|53831|0.55|
 |toy1||||
