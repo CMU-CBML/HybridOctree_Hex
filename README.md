@@ -109,7 +109,7 @@ HybridOctree_Hex received the best technical poster award in [the 2024 Internati
 |sphinx|206944|183216|0.55|
 |teaport|20093|16726|0.57|
 |thai_statue|64764|53831|0.55|
-|toy1||||
+|toy1|20274|16660|0.58|
 |toy2||||
 |uu-memento||||
 |venus||||
