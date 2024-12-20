@@ -1,4 +1,4 @@
-https://img.shields.io/badge/DOI-10.1016/j.jocs.2024.102278-blue
+[![DOI](https://img.shields.io/badge/DOI-10.1016/j.jocs.2024.102278-blue)](https://doi.org/10.1016/j.jocs.2024.102278)
 # HybridOctree_Hex
 Please download the latest release of the software.
 
