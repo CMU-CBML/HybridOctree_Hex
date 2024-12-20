@@ -1,3 +1,4 @@
+https://img.shields.io/badge/DOI-10.1016/j.jocs.2024.102278-blue
 # HybridOctree_Hex
 Please download the latest release of the software.
 
