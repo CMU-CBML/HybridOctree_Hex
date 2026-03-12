@@ -5,6 +5,7 @@ Please download the latest release of the software.
 HybridOctree_Hex received the best technical poster award in [the 2024 International Meshing Roundtable](https://internationalmeshingroundtable.com/awards/).
 
 Please also feel free to check out other works on grid-based hexahedral mesh generation:
+
 https://github.com/CMU-CBML/Element-Saving-Hexahedral-3-Refinement-Templates
 
 # Citation
