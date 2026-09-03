@@ -1,0 +1,45 @@
+Time elapsed for reading surface mesh: 1.62564
+Time elapsed for constructing octree: 0.197232
+Time elapsed for generating dual mesh: 0.243976
+Time elapsed for extracting interior dual mesh: 0.095038
+badElem: 29 aveDist: 0.0512881 maxDist: 2.05976 maxDistIdx: 211895
+badElem: 2 aveDist: 0.0320389 maxDist: 2.05976 maxDistIdx: 211895
+badElem: 0 aveDist: 0.0254606 maxDist: 2.05976 maxDistIdx: 211895
+badElem: 4 aveDist: 0.0201815 maxDist: 1.88816 maxDistIdx: 216749
+badElem: 3 aveDist: 0.016093 maxDist: 1.87686 maxDistIdx: 216749
+badElem: 0 aveDist: 0.0141114 maxDist: 1.87686 maxDistIdx: 216749
+badElem: 5 aveDist: 0.0119554 maxDist: 1.85872 maxDistIdx: 216750
+badElem: 1 aveDist: 0.00997868 maxDist: 1.85014 maxDistIdx: 216750
+badElem: 2 aveDist: 0.0089635 maxDist: 1.84459 maxDistIdx: 216750
+badElem: 3 aveDist: 0.00804837 maxDist: 1.8172 maxDistIdx: 216613
+badElem: 2 aveDist: 0.00729442 maxDist: 1.7976 maxDistIdx: 213071
+badElem: 0 aveDist: 0.00632411 maxDist: 1.77347 maxDistIdx: 213071
+badElem: 0 aveDist: 0.00555208 maxDist: 1.75757 maxDistIdx: 213071
+badElem: 3 aveDist: 0.00488371 maxDist: 1.70174 maxDistIdx: 215680
+badElem: 0 aveDist: 0.00345603 maxDist: 1.49373 maxDistIdx: 212495
+badElem: 1 aveDist: 0.00146236 maxDist: 1.14318 maxDistIdx: 212437
+badElem: 0 aveDist: 0.000934024 maxDist: 1.13293 maxDistIdx: 212437
+badElem: 0 aveDist: 0.000268729 maxDist: 0.62311 maxDistIdx: 214919
+badElem: 1 aveDist: 9.28983e-05 maxDist: 0.35418 maxDistIdx: 214920
+badElem: 1 aveDist: 3.10374e-05 maxDist: 0.174045 maxDistIdx: 211934
+ProjectToIsoSurface: reached MAX_PROJ_ITER (20000) without converging; stopping with best mesh found (badElem=0, smallDist=0.62311).
+Time elapsed for projecting to input surface: 1091.28
+Mesh generation finished     1093.98 real      1090.85 user         2.63 sys
+          6025281536  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              367920  page reclaims
+                   1  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  31  voluntary context switches
+                8139  involuntary context switches
+      13634009157164  instructions retired
+       3500035520423  cycles elapsed
+          6027760272  peak memory footprint
+EXIT: 0

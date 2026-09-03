@@ -1,0 +1,49 @@
+Time elapsed for reading surface mesh: 0.68589
+Time elapsed for curvature and narrow region assessment: 4.90972
+Number of unbalanced nodes: 56
+Number of unbalanced nodes: 0
+Time elapsed for octree generation (strongly balanced): 20.8964
+Time elapsed for constructing octree: 26.4059
+Time elapsed for generating dual mesh: 2.36474
+Time elapsed for extracting interior dual mesh: 7.9522
+badElem: 0 aveDist: 0.0345484 maxDist: 2.43867 maxDistIdx: 4163
+badElem: 0 aveDist: 0.00743995 maxDist: 1.1215 maxDistIdx: 3992
+badElem: 0 aveDist: 0.00202959 maxDist: 0.518806 maxDistIdx: 3973
+badElem: 0 aveDist: 0.000364348 maxDist: 0.0867331 maxDistIdx: 4194
+badElem: 0 aveDist: 2.8442e-05 maxDist: 0.0256863 maxDistIdx: 3982
+badElem: 0 aveDist: 6.33913e-06 maxDist: 0.00572493 maxDistIdx: 3982
+badElem: 0 aveDist: 1.31023e-14 maxDist: 6.63498e-12 maxDistIdx: 2781
+badElem: 18 aveDist: 0.00116081 maxDist: 0.135998 maxDistIdx: 3982
+badElem: 1 aveDist: 0.000904158 maxDist: 0.101472 maxDistIdx: 3982
+badElem: 0 aveDist: 0.000445932 maxDist: 0.0520819 maxDistIdx: 3931
+badElem: 0 aveDist: 0.000202407 maxDist: 0.0284975 maxDistIdx: 3931
+badElem: 3 aveDist: 7.72678e-05 maxDist: 0.0127991 maxDistIdx: 3941
+badElem: 0 aveDist: 3.11085e-05 maxDist: 0.00653225 maxDistIdx: 3941
+badElem: 0 aveDist: 1.17984e-05 maxDist: 0.00276363 maxDistIdx: 3941
+badElem: 0 aveDist: 4.67866e-06 maxDist: 0.00124571 maxDistIdx: 4092
+badElem: 0 aveDist: 1.69082e-06 maxDist: 0.000557385 maxDistIdx: 4092
+badElem: 1 aveDist: 3.08815e-07 maxDist: 9.66683e-05 maxDistIdx: 3945
+badElem: 0 aveDist: 2.51393e-07 maxDist: 0.000122937 maxDistIdx: 3931
+badElem: 0 aveDist: 1.28411e-14 maxDist: 1.69229e-11 maxDistIdx: 3227
+badElem: 1 aveDist: 7.33582e-05 maxDist: 0.00750676 maxDistIdx: 4557
+ProjectToIsoSurface: reached MAX_PROJ_ITER (20000) without converging; stopping with best mesh found (badElem=0, smallDist=6.63498e-12).
+Time elapsed for projecting to input surface: 8.96443
+Mesh generation finished       52.78 real        32.44 user        14.14 sys
+         18303762432  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             9269717  page reclaims
+                   1  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  16  voluntary context switches
+              165805  involuntary context switches
+        423546807969  instructions retired
+        147291955830  cycles elapsed
+         66906969152  peak memory footprint
+EXIT: 0

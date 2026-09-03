@@ -8,6 +8,16 @@ Please also feel free to check out other works on grid-based hexahedral mesh gen
 
 1. https://github.com/CMU-CBML/Element-Saving-Hexahedral-3-Refinement-Templates
 
+# Reproducing published results
+
+[`analysis.md`](analysis.md) (in this fork) tracks independent
+reproduction of the mesh statistics in Table 2 of the paper below, model
+by model, comparing the paper's reported numbers against runs on our own
+machines. See also the sibling
+[`hovey/HexOpt`](https://github.com/hovey/HexOpt) repo, which covers the
+non-overlapping quality-improvement-only half of the same overall pipeline
+(see `analysis.md`'s "Scope" section for how the two relate).
+
 # Citation
 ```angular2html
 @article{tong2024hybridoctree_hex,

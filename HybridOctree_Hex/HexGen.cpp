@@ -1,4 +1,6 @@
 #include "HexGen.h"
+#include <ctime>// clock()/CLOCKS_PER_SEC, for the per-substage timing added to
+                 // ConstructOctree() below
 double ELEM_THRES = 0.01;// element floating quality threshold
 int octreeENum; int hexMeshENum;
 
@@ -1007,6 +1009,33 @@ inline void hexGen::GetCellValue() {
 	refineTri4.assign(s04.begin(), s04.end());
 	//std::unordered_set<int> s05(refineTri5.begin(), refineTri5.end());
 	//refineTri5.assign(s05.begin(), s05.end());
+	// Note (2026-08-05): ComputeCellValue() below recurses over every
+	// octree node and, at each of the five tested refinement levels, does
+	// a brute-force linear scan through that level's candidate list
+	// (refineTri0..4/refineTriPt0..4 above) for every cell being
+	// classified — no spatial acceleration structure. Confirmed via
+	// temporary instrumentation (since removed) as the dominant cost on
+	// geometrically complex models: ~76x slower on Bottle1 vs. bone,
+	// heavily overshooting the ~6x that input-triangle-count scaling
+	// alone would predict, because both the number of cells needing
+	// classification and the candidate-list sizes scale up with surface
+	// complexity and compound multiplicatively. See analysis.md's
+	// 2026-08-05 summary log for the full investigation.
+	// Note (2026-08-05): compared refineTriPt0's (coarsest tested level's
+	// candidate points) spatial bounding box against the full model's
+	// bounding box, to test whether Bottle1's candidates are more
+	// spatially dispersed across its geometry than bone's. Partial
+	// support, not a full explanation: Bottle1's candidates do span more
+	// of their model's bounding box (99.1% vs. bone's 71.6%) despite only
+	// ~1.93x more points, and are actually *sparser* in point-density
+	// terms (~0.625x bone's density) — but naively combining the count
+	// and bbox-coverage ratios only predicts a ~2.7x marked-cell
+	// difference, far short of the ~12.5x actually observed. Bounding-box
+	// coverage alone doesn't capture what `ComputeCellValue()` actually
+	// tests (discrete grid-cell occupancy, not convex-hull volume), so
+	// this likely underestimates true dispersion — a finer test (actual
+	// occupied-cell count on a fixed grid) would be needed to resolve
+	// this further. See analysis.md's summary log.
 	for (i = levelId[octreeDepth] - 1; i > -1; i--)
 		ComputeCellValue(i, getLevel[i]);
 }
@@ -1244,8 +1273,36 @@ inline void hexGen::ComputeCellValue(int octreeId, int level) {
 }
 
 void hexGen::ConstructOctree() {
+	// Split into two timed substages (2026-08-04, see analysis.md's summary
+	// log) so the reproduction write-up can report curvature/narrow-region
+	// assessment separately from octree balancing, instead of Main.cpp's
+	// single coarse "Time elapsed for constructing octree" covering both:
+	//   1. GetCellValue(): curvature- and thickness-driven adaptive
+	//      refinement — decides which octree cells need refining based on
+	//      surface curvature and narrow-region (thin-wall) detection.
+	//   2. StrongBalancedOctree(): enforces the 2:1 balance constraint
+	//      across the resulting octree (refines any cell whose neighbor is
+	//      more than one level finer), independent of curvature/thickness.
+	// Only affects runs made with this build or later — it can't
+	// retroactively split timing already captured by an earlier run.
+	clock_t cellValueStart = clock();
 	GetCellValue();
+	clock_t cellValueEnd = clock();
+	std::cout << "Time elapsed for curvature and narrow region assessment: "
+		<< (double)(cellValueEnd - cellValueStart) / CLOCKS_PER_SEC << std::endl;
+
 	StrongBalancedOctree();
+	std::cout << "Time elapsed for octree generation (strongly balanced): "
+		<< (double)(clock() - cellValueEnd) / CLOCKS_PER_SEC << std::endl;
+	// Note (2026-08-05): counted octreeArray's true-entries before/after
+	// this balancing pass to test whether 2:1-balance propagation (not
+	// GetCellValue()'s curvature/thickness thresholds themselves) is what
+	// disproportionately inflates Bottle1's octree vs. bone's. Refuted —
+	// balancing amplifies both by a similar ~23-31%, and the ~12x
+	// Bottle1-vs-bone disparity is already fully present in the cell
+	// marks GetCellValue() produces, before this function ever runs. See
+	// analysis.md's summary log for the counts and what's still open.
+
 	octreeArray.clear(); cutArray1.clear();
 }
 
@@ -2969,6 +3026,58 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 	g = new double[2 * sPIdx + bP2.size()][3];// gradient
 	int minIdx[9], maxDistIdx = -114514;
 	bool allPositive = false;
+	// DIST_THRES2 (sqrt(1e-12) = 1e-6) is defined in Initialization.h as a
+	// point-*overlap* detection tolerance ("threshold when judging point
+	// overlap") — it's used nowhere else in the codebase, so reusing it here
+	// as the surface-projection convergence target asked for near
+	// machine-precision distance, an unreasonably tight bound for "this
+	// point now lies on the projected surface." That's why genuine
+	// convergence (both k == 0 and smallDist below tolerance) only happened
+	// on ~8% of checkpoints empirically — it was essentially waiting for a
+	// lucky near-exact landing rather than a reachable optimization target.
+	// PROJ_CONVERGE_TOL is a dedicated, appropriately loose tolerance for
+	// this optimization instead.
+	const double PROJ_CONVERGE_TOL = 1e-4;
+	// Root-cause fix: the loop below ratchets ELEM_THRES upward every time it
+	// achieves a perfect pass (k == 0 && smallDist < PROJ_CONVERGE_TOL), without
+	// ever lowering it back down or capping it. Once ELEM_THRES exceeds the
+	// mesh's achievable scaled-Jacobian quality, k == 0 can never happen
+	// again, so the redistribution/finalMesh.vtk-writing "success" branch
+	// becomes permanently unreachable and the loop degrades into endless
+	// non-converging oscillation. ELEM_THRES_CAP stops the ratchet at a
+	// realistic quality bar (published results for this method report min
+	// scaled Jacobian around 0.53-0.62), so the success branch keeps firing
+	// and finalMesh.vtk keeps getting written as quality genuinely improves.
+	const double ELEM_THRES_CAP = 0.7;
+	// The success branch below never breaks the outer while(true) loop on
+	// its own (it's a randomized local-search redistribution step, not a
+	// fixed point), so a hard iteration backstop is still required for
+	// guaranteed termination. Reaching ELEM_THRES_CAP requires ~17
+	// successful checkpoints from the initial 0.53 jump; empirically only
+	// ~10-12% of checkpoints succeed (bone_tri.raw: 6/51 with
+	// PROJ_CONVERGE_TOL=1e-4), so ~150 checkpoints (150k raw iterations) is
+	// a realistic budget with margin, rather than the earlier 50k which cut
+	// convergence off well before ELEM_THRES could reach the cap. That
+	// budget assumes bone's per-checkpoint cost (~1s); it does not hold for
+	// every model — Bottle1 (2026-08-04, this M1, before the C_THRES fix)
+	// measured ~56s/checkpoint, extrapolating to several hours, so it was
+	// temporarily capped at 20000 for that one run (see analysis.md's
+	// summary log). Restored to 200000 here (2026-08-05) now that bone is
+	// being re-run to isolate the C_THRES fix from that temporary cap —
+	// this constant should reflect bone's own established budget by
+	// default, not a leftover reduction from a different model's run.
+	const int MAX_PROJ_ITER = 200000;
+	// This is not a monotonically-converging optimization — the randomized
+	// redistribution step can (and empirically does) make badElem/smallDist
+	// worse on a later checkpoint than an earlier one (e.g. degrading around
+	// a stubborn local feature late in a run). "Final" output should
+	// therefore be the objectively BEST checkpoint seen across the whole
+	// run, not just whatever state happens to exist when the loop stops.
+	// Track it here and write finalMesh.vtk only when a checkpoint improves
+	// on it, right when that state is measured (before any subsequent
+	// redistribution can perturb it away again).
+	int bestBadElem = affElemNum + 1;// sentinel: k (badElem count) can be at most affElemNum
+	double bestSmallDist = MAX_NUM2;
 
 	// choose which triangles to project to for all points
 	std::vector<int> triNum(sPIdx);
@@ -2986,8 +3095,10 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 		}
 	}
 	i = 0;
+	int projIterCount = 0;
 	while (true) {
 		i++;
+		projIterCount++;
 		for (j = 0; j < 2 * sPIdx + bP2.size(); j++) {
 			g[j][0] = 0; g[j][1] = 0; g[j][2] = 0;
 		}
@@ -4332,7 +4443,7 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 						tmp[0] = target[0]; tmp[1] = target[1]; tmp[2] = target[2];
 					}
 				}
-				if (smallDist < DIST_THRES2) {
+				if (smallDist < PROJ_CONVERGE_TOL) {
 					octreeMesh.v[bP[j + sPIdx]][0] = tmp[0];
 					octreeMesh.v[bP[j + sPIdx]][1] = tmp[1];
 					octreeMesh.v[bP[j + sPIdx]][2] = tmp[2];
@@ -4358,9 +4469,46 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 			}
 			std::cout << "badElem: " << k << " aveDist: " << aveDist / sPIdx << " maxDist: " << smallDist << " maxDistIdx: " << maxDistIdx << std::endl;
 			octreeMesh.WriteToVtk(fileName, BOX_LENGTH_RATIO, START_POINT);
-			if (k == 0 && smallDist < DIST_THRES2) {
-				if (ELEM_THRES == 0.01) ELEM_THRES = 0.53;
-				else ELEM_THRES += 0.01;
+			// Snapshot finalMesh.vtk right now if this checkpoint is the best
+			// seen so far (fewest bad elements, tie-broken by smallest surface
+			// distance). Doing this immediately — before the redistribution
+			// step below runs — captures the mesh in the exact state that
+			// earned this score, rather than whatever state exists later when
+			// the loop happens to stop.
+			if (k < bestBadElem || (k == bestBadElem && smallDist < bestSmallDist)) {
+				bestBadElem = k;
+				bestSmallDist = smallDist;
+				octreeMesh.WriteToVtk("finalMesh.vtk", BOX_LENGTH_RATIO, START_POINT);
+			}
+			if (projIterCount >= MAX_PROJ_ITER) {
+				std::cout << "ProjectToIsoSurface: reached MAX_PROJ_ITER (" << MAX_PROJ_ITER
+					<< ") without converging; stopping with best mesh found (badElem=" << bestBadElem
+					<< ", smallDist=" << bestSmallDist << ")." << std::endl;
+				break;
+			}
+			if (k == 0 && smallDist < PROJ_CONVERGE_TOL) {
+				if (ELEM_THRES == 0.01) {
+					ELEM_THRES = 0.53;
+				}
+				else if (ELEM_THRES < ELEM_THRES_CAP) {
+					ELEM_THRES += 0.01;
+				}
+				else {
+					// Already at the quality cap AND converged (k == 0, smallDist
+					// below tolerance): there's no more quality headroom to chase,
+					// so stop here instead of running the point-redistribution
+					// step below. That step randomly perturbs points to seek
+					// further quality gains, which reliably reintroduces surface-
+					// projection error and undoes the very convergence that just
+					// triggered this branch — an endless disturb-after-success
+					// cycle if left unguarded. Take the win and exit.
+					std::cout << "ProjectToIsoSurface: converged at ELEM_THRES cap ("
+						<< ELEM_THRES_CAP << "); badElem=0, smallDist=" << smallDist << "." << std::endl;
+					// The best-tracking snapshot above already captured this exact
+					// state (k == 0, smallDist below tolerance is by construction
+					// the best possible), so no extra write needed here.
+					break;
+				}
 
 				for (j = 0; j < sPIdx; j++) {
 					tmp[0] = 0; tmp[1] = 0; tmp[2] = 0;
@@ -4445,7 +4593,12 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 						octreeMesh.v[bP[j + sPIdx]][2] = target[2];
 					}
 				}
-				octreeMesh.WriteToVtk("finalMesh.vtk", BOX_LENGTH_RATIO, START_POINT);
+				// No finalMesh.vtk write here: this redistribution step is a
+				// randomized attempt at further quality gain and can leave the
+				// mesh worse than it was at the top of this checkpoint (that
+				// state, if it was the best seen, was already snapshotted
+				// above). Whether this redistribution helped or hurt gets
+				// judged fairly at the next checkpoint's measurement.
 				smallDist = 114514;
 			}
 		}
