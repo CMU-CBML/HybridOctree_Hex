@@ -6,7 +6,8 @@ HybridOctree_Hex received the best technical poster award in [the 2024 Internati
 
 Please also feel free to check out other works on grid-based hexahedral mesh generation:
 
-1. https://github.com/CMU-CBML/Element-Saving-Hexahedral-3-Refinement-Templates
+1. https://github.com/CMU-CBML/MCHex
+2. https://github.com/CMU-CBML/Element-Saving-Hexahedral-3-Refinement-Templates
 
 # Citation
 ```angular2html
