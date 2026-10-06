@@ -1,6 +1,12 @@
 #ifndef INITIALIZATION_H
 #define INITIALIZATION_H
 
+#include <cmath>
+// Select FLOATING only when reproducing a legacy build with floating abs(double).
+#ifdef HEXGEN_FLOATING_ABS
+using std::abs;
+#endif
+
 // constants
 const double PI = 3.1415926535897932384626433;
 const int VOXEL_SIZE = 10;// log2 voxel size

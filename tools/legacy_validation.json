@@ -1,0 +1,104 @@
+{
+  "baseline": "dfcb3db9b219bf8dbdf4e9130547d7c51f0d63d4",
+  "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "abs_mode": "FLOATING",
+  "fixed_step_validation": [
+    {
+      "case": "bone_tri",
+      "iterations": 1000,
+      "byte_identical": true,
+      "old_mesh_sha256": "4fd72b7788ad79b07eaacdb58734f705891a58f5bb0a50d3b89450b6797396b8",
+      "new_mesh_sha256": "4fd72b7788ad79b07eaacdb58734f705891a58f5bb0a50d3b89450b6797396b8",
+      "old_binary_sha256": "096cc46204cc729cef9d51decffe659f5a70e120f25f0e5ead11ea2422cfc026",
+      "new_binary_sha256": "096cc46204cc729cef9d51decffe659f5a70e120f25f0e5ead11ea2422cfc026"
+    },
+    {
+      "case": "dtorus_tri",
+      "iterations": 1000,
+      "byte_identical": true,
+      "old_mesh_sha256": "39d31bb7a39a1e421ce759589ac704ecfc2ecd908352dc68519d73cbd3e94cc5",
+      "new_mesh_sha256": "39d31bb7a39a1e421ce759589ac704ecfc2ecd908352dc68519d73cbd3e94cc5",
+      "old_binary_sha256": "3eca2f4d654bb88751fa0566e18937e3ca074f81789ebc5b95c3acfccb8c357f",
+      "new_binary_sha256": "3eca2f4d654bb88751fa0566e18937e3ca074f81789ebc5b95c3acfccb8c357f"
+    }
+  ],
+  "completed_pipeline_measurements": [
+    {
+      "case": "bone_tri",
+      "steps": 3000,
+      "byte_identical": true,
+      "old_seconds": 136.11,
+      "new_seconds": 90.38,
+      "speedup": 1.5059747731799074,
+      "old_peak_rss_mib": 30681.4765625,
+      "new_peak_rss_mib": 2470.609375,
+      "old_stage_seconds": {
+        "initialize": 2.86355,
+        "refinement": 49.1888,
+        "balance": 35.3567,
+        "octree_output": 4.71034,
+        "dual_extraction": 15.3135,
+        "remove_outside": 19.2551,
+        "projection": 7.04495
+      },
+      "new_stage_seconds": {
+        "initialize": 1.25535,
+        "refinement": 46.8493,
+        "balance": 0.411018,
+        "octree_output": 0.0419895,
+        "dual_extraction": 13.4229,
+        "remove_outside": 19.5028,
+        "projection": 7.10958
+      },
+      "identical_leaf_level_counts": {
+        "8": 3328,
+        "7": 3616,
+        "6": 22152,
+        "5": 7920,
+        "4": 2752
+      },
+      "identical_artifact_count": 20
+    },
+    {
+      "case": "dtorus_tri",
+      "steps": 3000,
+      "byte_identical": true,
+      "old_seconds": 209.48,
+      "new_seconds": 145.44,
+      "speedup": 1.4403190319031902,
+      "old_peak_rss_mib": 30682.34765625,
+      "new_peak_rss_mib": 2473.88671875,
+      "old_stage_seconds": {
+        "initialize": 2.60752,
+        "refinement": 61.962,
+        "balance": 46.4243,
+        "octree_output": 10.2499,
+        "dual_extraction": 31.3696,
+        "remove_outside": 41.7786,
+        "projection": 10.6149
+      },
+      "new_stage_seconds": {
+        "initialize": 0.863374,
+        "refinement": 61.6521,
+        "balance": 0.627624,
+        "octree_output": 0.0650623,
+        "dual_extraction": 27.5253,
+        "remove_outside": 41.6714,
+        "projection": 10.4737
+      },
+      "identical_leaf_level_counts": {
+        "7": 2176,
+        "6": 42736,
+        "5": 11392,
+        "4": 2000
+      },
+      "identical_artifact_count": 20
+    }
+  ],
+  "notes": [
+    "Fixed-step tests replay the identical unrounded pre-projection mesh, resetting seed to 1 at the projection boundary, for 1000 actual steps.",
+    "Already completed pipeline measurements used three original checkpoints (3000 steps at unchanged UPDATE_EVERY=1000), including the full pipeline random stream from seed 1. The then-tested checkpoint-only stop was replaced by an actual-step limit; the latter was separately verified at 1000 and 1001 steps.",
+    "The full reference frees its dead dense corner grid before tail recursion to fit RAM. Numerical operations, arrays and decisions are unchanged. Small adaptive fixtures also pass without this allocation-lifetime adjustment.",
+    "Single observations, not statistical medians or convergence tests. Archived published meshes are not the regression reference."
+  ]
+}

@@ -1,4 +1,16 @@
 #include "HexGen.h"
+#include <array>
+#include <unordered_map>
+#include <utility>
+
+// Exact integer lattice keys. No iteration over hash buckets determines output order.
+struct LatticeHash {
+	size_t operator()(const std::array<int, 3>& p) const {
+		size_t h = 0;
+		for (int value : p) h = h * 1000003u + std::hash<int>()(value);
+		return h;
+	}
+};
 double ELEM_THRES = 0.01;// element floating quality threshold
 int octreeENum; int hexMeshENum;
 
@@ -851,10 +863,23 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 		START_POINT[2] = 0;
 		int publicIdx[2];
 		double l1[3], lPublic[3], l2[3], cross1[3], cross2[3], angle;
+		// Only triangles incident to the current vertex can share an edge.
+		// Keep triangle IDs in input order to preserve floating-point sums.
+		std::vector<std::vector<int>> incidentTriangles(triMesh.vNum);
+		for (j = 0; j < triMesh.eNum; j++)
+			for (k = 0; k < 3; k++) {
+				auto& incident = incidentTriangles[triMesh.e[j][k]];
+				// Repeated vertex IDs must not add the same triangle twice.
+				if (incident.empty() || incident.back() != j)
+					incident.push_back(j);
+			}
 		for (i = 0; i < triMesh.vNum; i++) triMesh.r[i] = 0;
 		for (j = 0; j < triMesh.eNum - 1; j++)
-			for (k = 0; k < 3; k++)
-				for (l = j + 1; l < triMesh.eNum; l++)
+			for (k = 0; k < 3; k++) {
+				const auto& incident = incidentTriangles[triMesh.e[j][k]];
+				for (auto candidate = std::upper_bound(incident.begin(), incident.end(), j);
+					candidate != incident.end(); ++candidate) {
+					l = *candidate;
 					for (m = 0; m < 3; m++)
 						if (triMesh.e[l][m] == triMesh.e[j][k]) {
 							if (triMesh.e[j][(k + 1) % 3] == triMesh.e[l][(m + 1) % 3]) {
@@ -887,6 +912,8 @@ inline void hexGen::ReadRawData(const char* inputFileName, const char* outputFil
 							triMesh.r[triMesh.e[j][k]] += (angle - PI) * (angle - PI);
 							break;
 						}
+				}
+			}
 		triMesh.WriteToVtk(outputFileName, 1, START_POINT, 5, true);
 
 		BOX_LENGTH = 100;
@@ -1007,7 +1034,8 @@ inline void hexGen::GetCellValue() {
 	refineTri4.assign(s04.begin(), s04.end());
 	//std::unordered_set<int> s05(refineTri5.begin(), refineTri5.end());
 	//refineTri5.assign(s05.begin(), s05.end());
-	for (i = levelId[octreeDepth] - 1; i > -1; i--)
+	// Level 9 has no active criterion in the original source.
+	for (i = levelId[std::min(octreeDepth, 9)] - 1; i > -1; i--)
 		ComputeCellValue(i, getLevel[i]);
 }
 
@@ -1326,7 +1354,8 @@ inline void hexGen::StrongBalancedOctree() {
 	int leafcellId;
 	int cellSize;
 	int eightCell[8];
-	std::vector<std::vector<std::vector<std::vector<int>>>> preVecEightCell(voxelSize + 1, std::vector<std::vector<std::vector<int>>>(voxelSize + 1, std::vector<std::vector<int>>(voxelSize + 1, std::vector<int>())));
+	// Same corner buckets as the legacy dense grid; only occupied entries allocate.
+	std::unordered_map<std::array<int, 3>, std::vector<int>, LatticeHash> preVecEightCell;
 
 	for (i = 0; i < leafNum; i++) {
 		leafcellId = cutArray[i];
@@ -1377,7 +1406,7 @@ inline void hexGen::StrongBalancedOctree() {
 				zz = (z + 1) * cellSize;
 				break;
 			}
-			preVecEightCell[xx][yy][zz].push_back(leafcellId);
+			preVecEightCell[{{xx, yy, zz}}].push_back(leafcellId);
 		}
 	}
 
@@ -1391,18 +1420,18 @@ inline void hexGen::StrongBalancedOctree() {
 		yy = y * cellSize;
 		zz = z * cellSize;
 
-		if (preVecEightCell[xx][yy][zz].size() == 8) {
+		if (preVecEightCell[{{xx, yy, zz}}].size() == 8) {
 			level1 = 0;
 			for (j = 0; j < 8; j++) {
-				level2 = getLevel[preVecEightCell[xx][yy][zz][j]];
+				level2 = getLevel[preVecEightCell[{{xx, yy, zz}}][j]];
 				level1 = (level1 < level2 ? level2 : level1);
 			}
 
 			for (j = 0; j < 8; j++) {
-				level2 = getLevel[preVecEightCell[xx][yy][zz][j]];
-				if (level1 - level2 > 1 && !octreeArray[preVecEightCell[xx][yy][zz][j]]) {
-					octreeArray[preVecEightCell[xx][yy][zz][j]] = true;
-					RefineBrothers(preVecEightCell[xx][yy][zz][j], level2, eightCell);
+				level2 = getLevel[preVecEightCell[{{xx, yy, zz}}][j]];
+				if (level1 - level2 > 1 && !octreeArray[preVecEightCell[{{xx, yy, zz}}][j]]) {
+					octreeArray[preVecEightCell[{{xx, yy, zz}}][j]] = true;
+					RefineBrothers(preVecEightCell[{{xx, yy, zz}}][j], level2, eightCell);
 					for (k = 0; k < 8; k++)
 						for (l = 0; l < 8; l++) {
 							cutArray.push_back(Child(eightCell[k], getLevel[eightCell[k]], l));
@@ -1437,7 +1466,7 @@ void hexGen::OutputOctree(const char* fileName) {
 	int cellsize;
 	int x, y, z;
 	int i, j, k;
-	bool overlap;// check if two points overlap with each other
+	std::unordered_map<std::array<int, 3>, int, LatticeHash> vertexIndex;
 	octreeMesh.Initialize(2 * leafNum);
 	octreeENum = 2 * leafNum;
 	octreeMesh.eNum = leafNum;
@@ -1488,18 +1517,12 @@ void hexGen::OutputOctree(const char* fileName) {
 				octreeMesh.v[octreeMesh.vNum][2] += cellsize;
 				break;
 			}
-			overlap = false;
-			for (k = 0; k < octreeMesh.vNum; k++) {
-				if (dist(octreeMesh.v[octreeMesh.vNum], octreeMesh.v[k]) < DIST_THRES) {// overlap
-					overlap = true;
-					octreeMesh.e[i][j] = k;
-					break;
-				}
-			}
-			if (!overlap) {// create new point
-				octreeMesh.e[i][j] = octreeMesh.vNum;
-				octreeMesh.vNum++;
-			}
+			const double* point = octreeMesh.v[octreeMesh.vNum];
+			const std::array<int, 3> key = {{static_cast<int>(point[0]),
+				static_cast<int>(point[1]), static_cast<int>(point[2])}};
+			const auto entry = vertexIndex.emplace(key, octreeMesh.vNum);
+			octreeMesh.e[i][j] = entry.first->second;
+			if (entry.second) ++octreeMesh.vNum;
 		}
 	}
 	cutArray.clear();
@@ -1567,15 +1590,18 @@ void hexGen::DualFullHexMeshExtraction(const char* fileName) {
 	// empty hex candidates + generate regular hex
 	int countValence, num[8], collectNumLength = 0; double size[8];
 	std::vector<std::vector<int>> collectNum(octreeMesh.vNum, std::vector<int>(9));
+	std::vector<std::vector<std::pair<int, int>>> incidentCells(octreeMesh.vNum);
+	for (j = 0; j < leafNum; ++j)
+		for (k = 0; k < 8; ++k)
+			incidentCells[octreeMesh.e[j][k]].push_back(std::make_pair(j, k));
 	for (i = 0; i < octreeMesh.vNum; i++) {
 		countValence = 0;
-		for (j = 0; j < leafNum; j++)
-			for (k = 0; k < 8; k++)
-				if (octreeMesh.e[j][k] == i) {
-					size[countValence] = abs(octreeMesh.v[octreeMesh.e[j][0]][0] - octreeMesh.v[octreeMesh.e[j][6]][0]);
-					num[idTransform[k]] = j;
-					countValence++;
-				}
+		for (const auto& incident : incidentCells[i]) {
+			j = incident.first; k = incident.second;
+			size[countValence] = abs(octreeMesh.v[octreeMesh.e[j][0]][0] - octreeMesh.v[octreeMesh.e[j][6]][0]);
+			num[idTransform[k]] = j;
+			countValence++;
+		}
 		if (countValence == 8 && !(size[0] == size[1] && size[0] == size[2] && size[0] == size[3] && size[0] == size[4] && size[0] == size[5] && size[0] == size[6] && size[0] == size[7])) {
 			collectNum[collectNumLength][8] = i;
 			for (m = 0; m < 8; m++)
@@ -2811,7 +2837,8 @@ void hexGen::ReadDualHex(const char* inputFileName) {
 	fclose(dataFile);
 }
 
-void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh only
+void hexGen::ProjectToIsoSurface(const char* fileName, int maxIterations) {// modify octreeMesh only
+	int completedIterations = 0;
 	int i, j, k, l, fIdx = 0; bool pair;
 	std::vector<std::vector<int>> face(leafNum * 6, std::vector<int>(5));// 4 points in surface + exist number
 	// initialize face overlap number
@@ -4448,6 +4475,11 @@ void hexGen::ProjectToIsoSurface(const char* fileName) {// modify octreeMesh onl
 				octreeMesh.WriteToVtk("finalMesh.vtk", BOX_LENGTH_RATIO, START_POINT);
 				smallDist = 114514;
 			}
+		}
+		// Count actual outer-loop steps without changing the legacy checkpoint counter i.
+		if (maxIterations > 0 && ++completedIterations >= maxIterations) {
+			octreeMesh.WriteToVtk("iterationMesh.vtk", BOX_LENGTH_RATIO, START_POINT);
+			return;
 		}
 	}
 }

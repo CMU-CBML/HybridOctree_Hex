@@ -65,14 +65,17 @@ public:
 	void ReadDualHex(const char* inputFileName);
 
 	// filt surface faces and project surface faces to isosurface
-	void ProjectToIsoSurface(const char* fileName);
+	// maxIterations=0 keeps the original unbounded quality ramp. A positive
+	// value stops after exactly that many original outer-loop optimization steps.
+	void ProjectToIsoSurface(const char* fileName, int maxIterations = 0);
 
 private:
 	int voxelSize, octreeDepth, leafNum = 0;
 	double BOX_LENGTH, START_POINT[3], BOX_LENGTH_RATIO;// box length and start point determined by triangular mesh
 
 	std::vector<bool> octreeArray;// restore if the octree needs to refine
-	std::vector<int> getLevel, cutArray, cutArray1;// restore the leaf octree cell index
+	std::vector<unsigned char> getLevel; // Same values, including the zero-filled deepest level.
+	std::vector<int> cutArray, cutArray1;// restore the leaf octree cell index
 
 	Mesh triMesh;// triangular structure information
 	// different levels triangle number

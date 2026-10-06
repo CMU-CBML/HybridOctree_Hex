@@ -9,6 +9,162 @@ Please also feel free to check out other works on grid-based hexahedral mesh gen
 1. https://github.com/CMU-CBML/MCHex
 2. https://github.com/CMU-CBML/Element-Saving-Hexahedral-3-Refinement-Templates
 
+## Build and reproduce legacy behavior
+
+The default configuration preserves the meshing behavior of commit
+`dfcb3db9b219bf8dbdf4e9130547d7c51f0d63d4`. Adaptive refinement, balancing decisions,
+geometry predicates, random-call order and the projection quality ramp retain
+that implementation. The earlier experimental BVH, stronger balancing and fixed
+SJ 0.53 stopping policy have been removed from this PR.
+
+```sh
+cmake -S HybridOctree_Hex -B build/legacy -DCMAKE_BUILD_TYPE=Release -DHEXGEN_ABS_MODE=NATIVE
+cmake --build build/legacy --config Release --parallel
+# Run in a directory containing model.raw:
+/path/to/build/legacy/HexGen --seed 1 --iterations 1000
+```
+
+`--iterations 1000` performs exactly 1,000 original outer-loop optimization
+steps, writes the state at that step to `iterationMesh.vtk`, and returns. The
+counter used for this limit is separate from the legacy loop variable; the
+original smoothing/checkpoint schedule and quality ramp are unchanged. Reaching
+the step limit does not imply convergence. `projHex.vtk` and `finalMesh.vtk` keep
+their original checkpoint/milestone meanings. With no limit (or `--iterations 0`),
+projection continues indefinitely, even after reaching a quality milestone, as
+in the original implementation. Use a fresh run directory for each comparison.
+The default input remains `model.raw`, depth 10, with the original curvature and
+thickness thresholds. No parameter tuning is needed to enable compatibility.
+
+Exact reproduction requires the same input bytes, constants, seed, compiler,
+standard library, floating-point flags and optimization step as the legacy run.
+Do not compare runs stopped after the same wall-clock duration: a faster program
+will have performed more optimization steps. Historical `our results/*.vtk`
+files lack their full build/run provenance, so they are not an exact regression
+reference.
+
+### Match the legacy numeric overload
+
+The original source calls unqualified `abs(double)`. Its overload depends on the
+build environment. On the tested GCC 11.4 build, `abs(0.5)` returns integer zero;
+other legacy builds can select the floating overload. This PR does not silently
+replace that behavior.
+
+| CMake setting | Behavior |
+| --- | --- |
+| `HEXGEN_ABS_MODE=NATIVE` (default) | Keep the original compiler's unqualified `abs` resolution. Use for the same compiler/environment as the old build. |
+| `HEXGEN_ABS_MODE=FLOATING` | Explicitly select the floating overload. Use only to match a legacy build using floating `abs(double)`. |
+
+FLOATING selects an overload; it does not enable the removed balancing/BVH changes.
+Matching this setting alone does not guarantee cross-compiler bitwise equality.
+
+CMake 3.16+ and C++11 are required. Use an out-of-source build: the checked-in
+cache/Makefiles refer to a Windows installation. Single-configuration generators
+default to Release and respect an explicitly chosen build type.
+
+## Result-preserving optimizations
+
+- Index incident triangles for curvature, preserving triangle accumulation order.
+- Store the dense level lookup as bytes, preserving every original value,
+  including the zero-filled deepest level. This saves about 3.43 GiB at depth 10.
+- Store only occupied balancing corner buckets. The original minimum-corner
+  test, exactly-eight condition, sibling refinement, ordering, padded leaf arrays
+  and recursive passes are unchanged. This removes the approximately 24 GiB
+  dense corner-grid allocation per pass without strengthening balancing.
+- Index integer octree vertices by exact lattice coordinates, preserving
+  first-encounter numbering. On this integer lattice, the original squared
+  distance `< 1e-12` test is equivalent to exact equality.
+- Index incident cell/corner pairs during dual extraction, preserving their
+  original cell-then-corner order.
+- Skip the inactive level-9 refinement scan. Its original criterion is commented
+  out; active levels retain their original descending traversal and predicates.
+
+Compatibility deliberately retains legacy numerical and algorithmic behavior,
+including its limitations. Approximately 2 GiB of initial octree/list storage and
+expensive active cell/triangle scans remain. Bug fixes that alter geometry or
+adaptive topology should be separate changes with separate acceptance criteria.
+
+## Differential validation
+
+The checked-in runner reads the actual baseline commit with `git show`, builds
+both versions with the same flags, and compares exact output bytes. It does not
+use published example meshes as a substitute for executing the reference.
+Run from a clone containing the baseline commit, with Python 3, GCC/Clang and GNU
+`time` on Linux:
+
+```sh
+ctest --test-dir build/legacy --output-on-failure
+python3 tools/verify_legacy.py --suite fixtures --abs-mode FLOATING --output /tmp/hexgen-float-tests
+python3 tools/verify_legacy.py --suite pipeline --abs-mode FLOATING --iterations 1000 --reference-release-grid \
+  --output /tmp/hexgen-legacy-pipeline \
+  --inputs "input boundaries/bone_tri.raw" "input boundaries/dtorus_tri.raw"
+```
+
+Fixtures compare three adaptive partitions, ordered leaf IDs/levels, octree and
+dual-mesh coordinates/connectivity, and the 1,000th and 1,001st optimization
+steps, including checkpoint state and the next random value. This checks both a
+checkpoint boundary and a step between checkpoints. The pipeline suite compares
+curvature, pre/post-balancing leaf lists, every mesh stage and projection
+checkpoints, both as VTK and unrounded binary coordinate/connectivity data.
+The reference records observations and returns after the requested number of
+actual optimization steps.
+FLOATING supplies the same floating overload to both reference and candidate.
+No thresholds or refinement rules are patched.
+
+The full reference requires substantial RAM (the runner caps address space at
+36 GiB) and can be slow. `--reference-release-grid` frees its dead dense corner
+table immediately before tail recursion, avoiding another approximately 24 GiB
+of live allocation per recursive call. This changes allocation lifetime only;
+all original balancing decisions, arrays and ordering remain intact. Fixture
+tests also run without this reference adjustment. The report records its use.
+A fixed-step comparison verifies that observation
+boundary, not eventual convergence or byte identity with undocumented archived
+meshes. Full run logs, compiler/source hashes, stage timings and output hashes
+are written to the selected output directory.
+
+### Recorded compatibility check (2026-10-05)
+
+GCC 11.4, `-O3 -DNDEBUG -std=c++11`, FLOATING, default depth/thresholds:
+
+| Case | Completed old pipeline | Completed new pipeline | Speedup | Stage outputs |
+| --- | ---: | ---: | ---: | --- |
+| bone | 136.11 s | 90.38 s | 1.51x | Byte-identical |
+| dtorus | 209.48 s | 145.44 s | 1.44x | Byte-identical |
+
+These already completed measurements include three original checkpoints (3,000
+optimization steps), one run per version, with the reference grid-lifetime
+adjustment described above. Subsequent short tests verify the actual-step limit
+at 1,000 steps on both models, replaying the identical interior mesh, and at
+1,000/1,001 steps on fixtures in both NATIVE and FLOATING modes. Coordinates and
+connectivity match in unrounded binary form. Projection equations are unchanged;
+the measured speedups come from preprocessing, indexing and octree bookkeeping.
+See [machine-readable results](tools/legacy_validation.json) for hashes, stage
+timings, matching leaf-level counts and the precise measurement scope.
+
+To check a different projection step without rebuilding the octree, reuse the
+binary interior mesh saved by a previous pipeline run:
+
+```sh
+python3 tools/verify_legacy.py --suite projection --abs-mode FLOATING --iterations 1000 \
+  --state-dir /tmp/hexgen-legacy-pipeline/runs --output /tmp/hexgen-projection \
+  --inputs "input boundaries/bone_tri.raw" "input boundaries/dtorus_tri.raw"
+```
+
+This is a stage replay: both versions load the same unrounded interior mesh and
+reset the seed to 1 at the projection boundary. It verifies the fixed-step
+projection behavior independently; its random state is not presented as a resume
+of the full pipeline's random stream.
+
+Preprocessing can be measured separately, with three alternating old/new runs
+and six synthetic cases in addition to the supplied models:
+
+```sh
+baseline_dir="$(mktemp -d)"
+git archive dfcb3db HybridOctree_Hex | tar -x -C "$baseline_dir"
+python3 tools/benchmark_curvature.py "$baseline_dir/HybridOctree_Hex" \
+  "input boundaries/bone_tri.raw" "input boundaries/bunny_tri.raw" \
+  "input boundaries/fertility_tri.raw"
+```
+
 # Citation
 ```angular2html
 @article{tong2024hybridoctree_hex,
