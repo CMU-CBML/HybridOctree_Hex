@@ -1,0 +1,240 @@
+Time elapsed for reading surface mesh: 0.569878
+Time elapsed for curvature and narrow region assessment: 11.0202
+Number of unbalanced nodes: 92
+Number of unbalanced nodes: 15
+Number of unbalanced nodes: 0
+Time elapsed for octree generation (strongly balanced): 29.6421
+Time elapsed for constructing octree: 42.3991
+Time elapsed for generating dual mesh: 7.20467
+1177, 1995 1996 61 65 1179 
+64 65 61 60 21 
+5598, 8045 8046 3991 3995 5590 
+3994 3995 3991 3990 2837 
+5766, 4027 4028 4042 4041 2850 
+4027 4041 8242 8239 5767 
+5997, 8556 8557 7387 7389 5998 
+7388 7389 7387 7386 5162 
+6491, 9215 9225 9227 9230 6533 
+9225 9226 9228 9227 6490 
+Time elapsed for extracting interior dual mesh: 14.1742
+badElem: 2 aveDist: 0.0564133 maxDist: 2.36361 maxDistIdx: 14486
+badElem: 0 aveDist: 0.0132461 maxDist: 1.73001 maxDistIdx: 14114
+badElem: 0 aveDist: 0.00280891 maxDist: 0.862642 maxDistIdx: 14129
+badElem: 0 aveDist: 0.000457718 maxDist: 0.195119 maxDistIdx: 12015
+badElem: 0 aveDist: 5.51535e-05 maxDist: 0.0431285 maxDistIdx: 14128
+badElem: 0 aveDist: 1.4441e-05 maxDist: 0.00989054 maxDistIdx: 14128
+badElem: 0 aveDist: 3.07456e-06 maxDist: 0.00275603 maxDistIdx: 11627
+badElem: 0 aveDist: 3.13529e-06 maxDist: 0.00882963 maxDistIdx: 11627
+badElem: 1 aveDist: 8.40039e-07 maxDist: 0.00168257 maxDistIdx: 11617
+badElem: 0 aveDist: 7.20533e-07 maxDist: 0.00280383 maxDistIdx: 11627
+badElem: 0 aveDist: 1.60592e-07 maxDist: 0.000624914 maxDistIdx: 11627
+badElem: 0 aveDist: 2.67788e-09 maxDist: 3.93677e-06 maxDistIdx: 12464
+badElem: 18 aveDist: 0.000728369 maxDist: 0.141476 maxDistIdx: 12469
+badElem: 4 aveDist: 0.000736563 maxDist: 0.141476 maxDistIdx: 12469
+badElem: 4 aveDist: 0.000736635 maxDist: 0.141476 maxDistIdx: 12469
+badElem: 2 aveDist: 0.0003637 maxDist: 0.0751929 maxDistIdx: 12464
+badElem: 1 aveDist: 0.000176204 maxDist: 0.0585012 maxDistIdx: 12464
+badElem: 3 aveDist: 6.27766e-05 maxDist: 0.0323059 maxDistIdx: 12469
+badElem: 0 aveDist: 2.71282e-05 maxDist: 0.0247261 maxDistIdx: 12469
+badElem: 0 aveDist: 1.16079e-05 maxDist: 0.0142334 maxDistIdx: 12469
+badElem: 0 aveDist: 6.37784e-06 maxDist: 0.00974031 maxDistIdx: 12469
+badElem: 0 aveDist: 3.46151e-06 maxDist: 0.00556183 maxDistIdx: 12469
+badElem: 0 aveDist: 2.23722e-06 maxDist: 0.0036845 maxDistIdx: 12469
+badElem: 0 aveDist: 9.97349e-07 maxDist: 0.00170386 maxDistIdx: 12469
+badElem: 0 aveDist: 7.52272e-07 maxDist: 0.00136243 maxDistIdx: 12469
+badElem: 0 aveDist: 8.65947e-07 maxDist: 0.00164964 maxDistIdx: 12469
+badElem: 0 aveDist: 4.80504e-07 maxDist: 0.000646341 maxDistIdx: 12469
+badElem: 0 aveDist: 1.68295e-07 maxDist: 0.000480924 maxDistIdx: 12464
+badElem: 0 aveDist: 3.75095e-08 maxDist: 0.000107188 maxDistIdx: 12464
+badElem: 0 aveDist: 6.34377e-15 maxDist: 1.83989e-11 maxDistIdx: 13228
+badElem: 6 aveDist: 8.92513e-05 maxDist: 0.0100267 maxDistIdx: 12464
+badElem: 0 aveDist: 2.70806e-05 maxDist: 0.00647788 maxDistIdx: 12464
+badElem: 0 aveDist: 8.76315e-06 maxDist: 0.00453808 maxDistIdx: 12469
+badElem: 0 aveDist: 3.60143e-06 maxDist: 0.00309018 maxDistIdx: 12469
+badElem: 0 aveDist: 1.68214e-06 maxDist: 0.00210091 maxDistIdx: 12469
+badElem: 0 aveDist: 8.43623e-07 maxDist: 0.00119636 maxDistIdx: 12469
+badElem: 0 aveDist: 3.95196e-07 maxDist: 0.000741906 maxDistIdx: 12469
+badElem: 0 aveDist: 4.11771e-07 maxDist: 0.000597667 maxDistIdx: 12464
+badElem: 0 aveDist: 2.19543e-07 maxDist: 0.000372651 maxDistIdx: 12469
+badElem: 0 aveDist: 2.86685e-15 maxDist: 4.71261e-12 maxDistIdx: 13868
+badElem: 3 aveDist: 0.000137565 maxDist: 0.0172885 maxDistIdx: 13982
+badElem: 0 aveDist: 6.80131e-05 maxDist: 0.00931783 maxDistIdx: 13982
+badElem: 0 aveDist: 2.53011e-05 maxDist: 0.00493158 maxDistIdx: 12464
+badElem: 1 aveDist: 9.61862e-06 maxDist: 0.00373736 maxDistIdx: 12469
+badElem: 0 aveDist: 3.72616e-06 maxDist: 0.00269028 maxDistIdx: 12469
+badElem: 1 aveDist: 1.07944e-06 maxDist: 0.00121097 maxDistIdx: 12464
+badElem: 0 aveDist: 9.63957e-07 maxDist: 0.00134132 maxDistIdx: 12464
+badElem: 0 aveDist: 4.25251e-07 maxDist: 0.000521577 maxDistIdx: 12464
+badElem: 0 aveDist: 2.84902e-07 maxDist: 0.000353725 maxDistIdx: 12464
+badElem: 0 aveDist: 1.76535e-15 maxDist: 2.87955e-14 maxDistIdx: 10972
+badElem: 12 aveDist: 0.000194904 maxDist: 0.0215262 maxDistIdx: 14027
+badElem: 0 aveDist: 0.000124853 maxDist: 0.0136061 maxDistIdx: 14027
+badElem: 0 aveDist: 5.71341e-05 maxDist: 0.00614321 maxDistIdx: 13810
+badElem: 0 aveDist: 2.12975e-05 maxDist: 0.00412473 maxDistIdx: 12469
+badElem: 0 aveDist: 7.4844e-06 maxDist: 0.00272027 maxDistIdx: 12469
+badElem: 0 aveDist: 3.01377e-06 maxDist: 0.00195676 maxDistIdx: 12469
+badElem: 0 aveDist: 1.43921e-06 maxDist: 0.00180901 maxDistIdx: 12469
+badElem: 0 aveDist: 3.20769e-07 maxDist: 0.000403191 maxDistIdx: 12469
+badElem: 0 aveDist: 1.83313e-15 maxDist: 2.66959e-14 maxDistIdx: 10949
+badElem: 7 aveDist: 0.000232851 maxDist: 0.0235653 maxDistIdx: 14454
+badElem: 0 aveDist: 0.000178303 maxDist: 0.0180553 maxDistIdx: 14454
+badElem: 2 aveDist: 8.71668e-05 maxDist: 0.00855539 maxDistIdx: 14454
+badElem: 3 aveDist: 3.62032e-05 maxDist: 0.00487306 maxDistIdx: 12469
+badElem: 0 aveDist: 1.51968e-05 maxDist: 0.00364535 maxDistIdx: 12469
+badElem: 0 aveDist: 6.30265e-06 maxDist: 0.00259871 maxDistIdx: 12469
+badElem: 0 aveDist: 2.84232e-06 maxDist: 0.00194388 maxDistIdx: 12469
+badElem: 2 aveDist: 5.49684e-07 maxDist: 0.000425223 maxDistIdx: 12464
+badElem: 0 aveDist: 5.74791e-07 maxDist: 0.000506049 maxDistIdx: 12464
+badElem: 0 aveDist: 7.61478e-07 maxDist: 0.000970628 maxDistIdx: 12469
+badElem: 0 aveDist: 1.69718e-07 maxDist: 0.000216333 maxDistIdx: 12469
+badElem: 0 aveDist: 2.16767e-15 maxDist: 1.52701e-12 maxDistIdx: 12991
+badElem: 12 aveDist: 0.000298458 maxDist: 0.0292082 maxDistIdx: 14454
+badElem: 13 aveDist: 0.000293383 maxDist: 0.0281775 maxDistIdx: 14028
+badElem: 3 aveDist: 0.000295986 maxDist: 0.0281775 maxDistIdx: 14028
+badElem: 0 aveDist: 0.000237189 maxDist: 0.0223722 maxDistIdx: 14028
+badElem: 1 aveDist: 0.000118383 maxDist: 0.0109414 maxDistIdx: 13810
+badElem: 0 aveDist: 6.11737e-05 maxDist: 0.00622327 maxDistIdx: 12464
+badElem: 0 aveDist: 2.49799e-05 maxDist: 0.00438562 maxDistIdx: 12464
+badElem: 0 aveDist: 9.27387e-06 maxDist: 0.00294753 maxDistIdx: 12464
+badElem: 1 aveDist: 4.67291e-06 maxDist: 0.00265745 maxDistIdx: 12469
+badElem: 0 aveDist: 2.31912e-06 maxDist: 0.00133797 maxDistIdx: 12464
+badElem: 0 aveDist: 1.01404e-06 maxDist: 0.00127798 maxDistIdx: 12469
+badElem: 0 aveDist: 6.39453e-07 maxDist: 0.000914301 maxDistIdx: 12469
+badElem: 0 aveDist: 1.42521e-07 maxDist: 0.000203778 maxDistIdx: 12469
+badElem: 0 aveDist: 1.87841e-15 maxDist: 2.66959e-14 maxDistIdx: 10949
+badElem: 18 aveDist: 0.000392543 maxDist: 0.0489528 maxDistIdx: 11717
+badElem: 12 aveDist: 0.000395156 maxDist: 0.0492328 maxDistIdx: 11717
+badElem: 8 aveDist: 0.000396902 maxDist: 0.0492328 maxDistIdx: 11717
+badElem: 14 aveDist: 0.000386734 maxDist: 0.0417883 maxDistIdx: 11249
+badElem: 5 aveDist: 0.000396663 maxDist: 0.0417883 maxDistIdx: 11249
+badElem: 1 aveDist: 0.000325711 maxDist: 0.0331136 maxDistIdx: 11249
+badElem: 2 aveDist: 0.000218783 maxDist: 0.0241664 maxDistIdx: 11183
+badElem: 0 aveDist: 0.000133059 maxDist: 0.0128535 maxDistIdx: 11183
+badElem: 4 aveDist: 7.09003e-05 maxDist: 0.00855861 maxDistIdx: 11717
+badElem: 4 aveDist: 4.02367e-05 maxDist: 0.00625825 maxDistIdx: 11249
+badElem: 0 aveDist: 1.79371e-05 maxDist: 0.00436969 maxDistIdx: 12464
+badElem: 0 aveDist: 1.23416e-05 maxDist: 0.00388644 maxDistIdx: 11717
+badElem: 0 aveDist: 4.9205e-06 maxDist: 0.00224651 maxDistIdx: 12464
+badElem: 0 aveDist: 3.10381e-06 maxDist: 0.00197501 maxDistIdx: 12469
+badElem: 0 aveDist: 1.6591e-06 maxDist: 0.00154787 maxDistIdx: 12464
+badElem: 0 aveDist: 6.44351e-07 maxDist: 0.00123629 maxDistIdx: 12464
+badElem: 0 aveDist: 1.43612e-07 maxDist: 0.000275543 maxDistIdx: 12464
+badElem: 0 aveDist: 2.97162e-15 maxDist: 4.33306e-12 maxDistIdx: 13300
+badElem: 32 aveDist: 0.000526074 maxDist: 0.0603153 maxDistIdx: 11717
+badElem: 15 aveDist: 0.00057737 maxDist: 0.0675133 maxDistIdx: 11717
+badElem: 12 aveDist: 0.000579685 maxDist: 0.0675133 maxDistIdx: 11717
+badElem: 13 aveDist: 0.000582339 maxDist: 0.0675133 maxDistIdx: 11717
+badElem: 8 aveDist: 0.000584783 maxDist: 0.0675133 maxDistIdx: 11717
+badElem: 12 aveDist: 0.000586858 maxDist: 0.0675133 maxDistIdx: 11717
+badElem: 9 aveDist: 0.000588839 maxDist: 0.0675133 maxDistIdx: 11717
+badElem: 13 aveDist: 0.000574531 maxDist: 0.0594146 maxDistIdx: 11249
+badElem: 8 aveDist: 0.000590142 maxDist: 0.0602629 maxDistIdx: 11183
+badElem: 3 aveDist: 0.000591625 maxDist: 0.0602629 maxDistIdx: 11183
+badElem: 8 aveDist: 0.00049077 maxDist: 0.0520998 maxDistIdx: 11249
+badElem: 5 aveDist: 0.000378246 maxDist: 0.0389877 maxDistIdx: 11249
+badElem: 0 aveDist: 0.000287249 maxDist: 0.0275815 maxDistIdx: 11799
+badElem: 1 aveDist: 0.000219413 maxDist: 0.0222035 maxDistIdx: 11249
+badElem: 2 aveDist: 0.000163301 maxDist: 0.0167992 maxDistIdx: 11799
+badElem: 0 aveDist: 0.000118228 maxDist: 0.0185351 maxDistIdx: 11249
+badElem: 3 aveDist: 8.38211e-05 maxDist: 0.0119489 maxDistIdx: 11717
+badElem: 0 aveDist: 6.29309e-05 maxDist: 0.011673 maxDistIdx: 11249
+badElem: 8 aveDist: 4.265e-05 maxDist: 0.0107558 maxDistIdx: 11801
+badElem: 5 aveDist: 2.95381e-05 maxDist: 0.0101761 maxDistIdx: 11801
+badElem: 3 aveDist: 1.69519e-05 maxDist: 0.00407778 maxDistIdx: 11717
+badElem: 0 aveDist: 1.07903e-05 maxDist: 0.0027669 maxDistIdx: 12469
+badElem: 0 aveDist: 1.29534e-05 maxDist: 0.00726759 maxDistIdx: 11801
+badElem: 0 aveDist: 7.27036e-06 maxDist: 0.00497475 maxDistIdx: 11801
+badElem: 0 aveDist: 3.88213e-06 maxDist: 0.00290884 maxDistIdx: 11801
+badElem: 0 aveDist: 2.87232e-06 maxDist: 0.00248789 maxDistIdx: 11801
+badElem: 0 aveDist: 1.32775e-06 maxDist: 0.00142174 maxDistIdx: 11801
+badElem: 0 aveDist: 7.75623e-07 maxDist: 0.00059857 maxDistIdx: 12464
+badElem: 0 aveDist: 2.96969e-07 maxDist: 0.000369507 maxDistIdx: 11801
+badElem: 0 aveDist: 2.08007e-15 maxDist: 2.48946e-14 maxDistIdx: 10702
+badElem: 44 aveDist: 0.00070479 maxDist: 0.0744161 maxDistIdx: 11717
+badElem: 31 aveDist: 0.000797025 maxDist: 0.0868872 maxDistIdx: 11799
+badElem: 36 aveDist: 0.000846933 maxDist: 0.108701 maxDistIdx: 11799
+badElem: 38 aveDist: 0.00088397 maxDist: 0.124079 maxDistIdx: 11799
+badElem: 30 aveDist: 0.000909821 maxDist: 0.132244 maxDistIdx: 11799
+badElem: 19 aveDist: 0.000933088 maxDist: 0.136835 maxDistIdx: 11799
+badElem: 9 aveDist: 0.000935498 maxDist: 0.137035 maxDistIdx: 11799
+badElem: 11 aveDist: 0.000937313 maxDist: 0.137035 maxDistIdx: 11799
+badElem: 11 aveDist: 0.000939082 maxDist: 0.137035 maxDistIdx: 11799
+badElem: 13 aveDist: 0.000940612 maxDist: 0.137035 maxDistIdx: 11799
+badElem: 8 aveDist: 0.000942096 maxDist: 0.137035 maxDistIdx: 11799
+badElem: 10 aveDist: 0.000911029 maxDist: 0.124117 maxDistIdx: 11877
+badElem: 7 aveDist: 0.000933283 maxDist: 0.124117 maxDistIdx: 11877
+badElem: 9 aveDist: 0.000934629 maxDist: 0.124117 maxDistIdx: 11877
+badElem: 19 aveDist: 0.000906467 maxDist: 0.0904958 maxDistIdx: 11717
+badElem: 7 aveDist: 0.000928769 maxDist: 0.0906348 maxDistIdx: 11249
+badElem: 6 aveDist: 0.000892996 maxDist: 0.0883018 maxDistIdx: 11717
+badElem: 2 aveDist: 0.000788296 maxDist: 0.0767078 maxDistIdx: 11717
+badElem: 1 aveDist: 0.000680419 maxDist: 0.0670787 maxDistIdx: 11717
+badElem: 0 aveDist: 0.00057702 maxDist: 0.0597829 maxDistIdx: 11717
+badElem: 3 aveDist: 0.000530342 maxDist: 0.0544793 maxDistIdx: 11717
+badElem: 4 aveDist: 0.000459996 maxDist: 0.0478363 maxDistIdx: 11717
+badElem: 5 aveDist: 0.000436812 maxDist: 0.0500718 maxDistIdx: 11717
+badElem: 6 aveDist: 0.000355481 maxDist: 0.0406401 maxDistIdx: 11799
+badElem: 1 aveDist: 0.000358367 maxDist: 0.0506283 maxDistIdx: 11799
+badElem: 1 aveDist: 0.000309008 maxDist: 0.0444965 maxDistIdx: 11799
+badElem: 0 aveDist: 0.000274279 maxDist: 0.0385845 maxDistIdx: 11799
+badElem: 6 aveDist: 0.000235816 maxDist: 0.0357582 maxDistIdx: 11877
+badElem: 7 aveDist: 0.000208322 maxDist: 0.034939 maxDistIdx: 11877
+badElem: 0 aveDist: 0.000167505 maxDist: 0.0274647 maxDistIdx: 11877
+badElem: 8 aveDist: 0.000167531 maxDist: 0.0336661 maxDistIdx: 11799
+badElem: 2 aveDist: 0.000128713 maxDist: 0.0283459 maxDistIdx: 11799
+badElem: 0 aveDist: 0.000130035 maxDist: 0.0328304 maxDistIdx: 11799
+badElem: 11 aveDist: 0.000109478 maxDist: 0.0267454 maxDistIdx: 11799
+badElem: 3 aveDist: 0.00012155 maxDist: 0.0301971 maxDistIdx: 11877
+badElem: 6 aveDist: 9.71268e-05 maxDist: 0.0255843 maxDistIdx: 11799
+badElem: 5 aveDist: 8.29439e-05 maxDist: 0.0206655 maxDistIdx: 11799
+badElem: 1 aveDist: 7.04964e-05 maxDist: 0.0182355 maxDistIdx: 11801
+badElem: 1 aveDist: 7.12868e-05 maxDist: 0.019559 maxDistIdx: 11877
+badElem: 0 aveDist: 6.8419e-05 maxDist: 0.0198275 maxDistIdx: 11801
+badElem: 11 aveDist: 4.91511e-05 maxDist: 0.0157525 maxDistIdx: 11877
+badElem: 4 aveDist: 6.47376e-05 maxDist: 0.0178915 maxDistIdx: 11877
+badElem: 7 aveDist: 5.48825e-05 maxDist: 0.0156414 maxDistIdx: 11877
+badElem: 0 aveDist: 4.45118e-05 maxDist: 0.0165205 maxDistIdx: 11801
+badElem: 0 aveDist: 4.45162e-05 maxDist: 0.0160664 maxDistIdx: 11801
+badElem: 0 aveDist: 3.17863e-05 maxDist: 0.0125587 maxDistIdx: 11801
+badElem: 14 aveDist: 2.87206e-05 maxDist: 0.0114417 maxDistIdx: 11801
+badElem: 0 aveDist: 4.35979e-05 maxDist: 0.0168713 maxDistIdx: 11801
+badElem: 1 aveDist: 2.67631e-05 maxDist: 0.0107481 maxDistIdx: 11801
+badElem: 5 aveDist: 2.37006e-05 maxDist: 0.0135484 maxDistIdx: 11801
+badElem: 0 aveDist: 1.88098e-05 maxDist: 0.00964535 maxDistIdx: 11801
+badElem: 0 aveDist: 2.03849e-05 maxDist: 0.0115127 maxDistIdx: 11801
+badElem: 2 aveDist: 1.30587e-05 maxDist: 0.00505279 maxDistIdx: 11812
+badElem: 0 aveDist: 2.35527e-05 maxDist: 0.0104476 maxDistIdx: 11799
+badElem: 0 aveDist: 1.50241e-05 maxDist: 0.00929449 maxDistIdx: 11801
+badElem: 0 aveDist: 1.28256e-05 maxDist: 0.0087681 maxDistIdx: 11801
+badElem: 1 aveDist: 1.65517e-05 maxDist: 0.00925628 maxDistIdx: 11801
+badElem: 7 aveDist: 1.54011e-05 maxDist: 0.0110174 maxDistIdx: 11801
+badElem: 0 aveDist: 1.2463e-05 maxDist: 0.00628984 maxDistIdx: 11801
+badElem: 0 aveDist: 9.04839e-06 maxDist: 0.00511645 maxDistIdx: 11801
+badElem: 0 aveDist: 1.5861e-05 maxDist: 0.00998049 maxDistIdx: 11801
+badElem: 0 aveDist: 1.41348e-05 maxDist: 0.00823088 maxDistIdx: 11801
+badElem: 4 aveDist: 1.27376e-05 maxDist: 0.00851708 maxDistIdx: 11801
+badElem: 2 aveDist: 5.96585e-06 maxDist: 0.00301949 maxDistIdx: 11812
+badElem: 0 aveDist: 4.76864e-06 maxDist: 0.00342777 maxDistIdx: 11801
+badElem: 0 aveDist: 6.80771e-06 maxDist: 0.00525643 maxDistIdx: 11801
+badElem: 0 aveDist: 9.72607e-06 maxDist: 0.00634503 maxDistIdx: 11801
+ProjectToIsoSurface: reached MAX_PROJ_ITER (200000) without converging; stopping with best mesh found (badElem=0, smallDist=2.48946e-14).
+Time elapsed for projecting to input surface: 238.002
+Mesh generation finished      313.80 real       281.42 user        21.10 sys
+         18113904640  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+            14177043  page reclaims
+                   1  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  62  voluntary context switches
+              351779  involuntary context switches
+       3681503033168  instructions retired
+        961559678067  cycles elapsed
+         97212740888  peak memory footprint
+EXIT: 0

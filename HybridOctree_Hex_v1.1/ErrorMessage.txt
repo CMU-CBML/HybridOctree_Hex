@@ -1,0 +1,5 @@
+0	Wrong file name
+1	Cannot get total point number
+2	Cannot get total element number
+3	Cannot get total point/element number
+4	Cannot find a triangle to project the point

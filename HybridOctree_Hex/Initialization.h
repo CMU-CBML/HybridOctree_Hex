@@ -4,7 +4,33 @@
 // constants
 const double PI = 3.1415926535897932384626433;
 const int VOXEL_SIZE = 10;// log2 voxel size
-const double C_THRES[5] = { 0, 0, 0.4, 0.8, 1.6};// 4 5 6 7 8
+// Curvature refinement thresholds (Gthres). Paper (Tong, Halilaj, Zhang,
+// J. Comput. Sci. 78 (2024) 102278, Section 2.1, p.3) states
+// Gthres = {0.5, 1, 2, 4, 8}, but that assumes the paper's own curvature
+// formula: a cotangent-Laplacian magnitude normalized by local Voronoi
+// area (units ~ 1/length). The "curvature" this codebase actually
+// computes (see ReadRawData() in HexGen.cpp, the only curvature
+// computation in the codebase) is a different, unnormalized quantity —
+// sum of squared dihedral-angle deviations from flat (units: radians^2,
+// no area normalization) — so the paper's literal threshold values don't
+// transfer here (confirmed empirically 2026-08-05: paper's literal
+// values undersize bone ~2.3x vs. this repo's own published stats, while
+// the buggy shipped {0,0,0.4,0.8,1.6} oversizes it ~1.9x). Using v1.2's
+// historical value instead (git history of this file, upstream
+// CMU-CBML/HybridOctree_Hex, commit f9e667c) as an empirical calibration
+// point between those two — a previously-shipped value, not an arbitrary
+// guess — pending further reconciliation of the formula mismatch.
+const double C_THRES[5] = { 0.1, 0.2, 0.4, 0.8, 1.6 };// 4 5 6 7 8
+// H_THRES (thickness/narrow-region) already matches the paper's literal
+// Tthres = {16,8,4,2,1}. Tested (2026-08-05) whether it's the dominant
+// octree-refinement driver for Bottle1 specifically, since C_THRES
+// recalibration barely changed Bottle1's mesh size (~2.7%) despite
+// working well for bone (~24%): halving H_THRES to {8,4,2,1,0.5} — a
+// much stricter thickness gate — only reduced Bottle1's octree by
+// ~1% (358,307→354,875 points), refuting the hypothesis. Reverted to the
+// paper-matching value. See analysis.md's summary log for the refuted
+// test and the still-open question this leaves (neither threshold,
+// tuned individually, explains Bottle1's over-refinement).
 const double H_THRES[5] = { 16, 8, 4, 2, 1};// 4 5 6 7 8
 const int MAX_NUM = 100000000;// maximum number
 const int MAX_NUM2 = 2147483647;

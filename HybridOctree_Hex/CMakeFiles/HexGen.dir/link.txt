@@ -1,3 +1,0 @@
-D:\cmake\bin\cmake.exe -E rm -f CMakeFiles\HexGen.dir/objects.a
-D:\GCC\bin\ar.exe qc CMakeFiles\HexGen.dir/objects.a @CMakeFiles\HexGen.dir\objects1.rsp
-D:\GCC\bin\c++.exe -Wl,--whole-archive CMakeFiles\HexGen.dir/objects.a -Wl,--no-whole-archive -o HexGen.exe -Wl,--out-implib,libHexGen.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\HexGen.dir\linkLibs.rsp

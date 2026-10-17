@@ -1,0 +1,28 @@
+Time elapsed for reading surface mesh: 1.69688
+Time elapsed for curvature and narrow region assessment: 724.386
+Number of unbalanced nodes: 855
+Number of unbalanced nodes: 157
+Number of unbalanced nodes: 7
+Number of unbalanced nodes: 0
+Time elapsed for octree generation (strongly balanced): 47.503
+Time elapsed for constructing octree: 1019.75
+time: command terminated abnormally
+     1991.28 real      1924.77 user        42.79 sys
+         15456796672  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+            19119830  page reclaims
+                   1  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  18  voluntary context switches
+              747723  involuntary context switches
+      36187380720690  instructions retired
+       6213446468826  cycles elapsed
+        127554196928  peak memory footprint
+EXIT: 143
